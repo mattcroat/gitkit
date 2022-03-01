@@ -23,3 +23,37 @@
 	--spacing-24: 2.4rem;
 	--spacing-32: 3.2rem;
 }
+
+html {
+	font-size: 62.5%;
+}
+
+html,
+body {
+	height: 100%;
+}
+
+body {
+	font-family: 'Poppins', sans-serif;
+	font-size: var(--font-18);
+	color: hsl(0 0% 98%);
+	background-color: hsl(220 20% 14%);
+}
+
+h1 {
+	font-size: var(--font-32);
+}
+
+h2 {
+	font-size: var(--font-24);
+}
+
+a {
+	font-weight: 700;
+	text-decoration: none;
+	color: tomato;
+}
+
+a:hover {
+	text-decoration: underline;
+}
