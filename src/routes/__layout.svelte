@@ -2,4 +2,6 @@
 	import '$root/styles/global.css'
 </script>
 
+<a href="/">Home</a>
+
 <slot />
