@@ -1,0 +1,27 @@
+Token:
+  ☐ Create GitHub token
+  ☐ Create .env file for GitHub token
+  ☐ Add .env.example
+
+Posts:
+  ☐ List posts
+  ☐ View post by slug
+  ☐ Add post
+  ☐ Remove post
+  ☐ Edit post
+  ☐ Drafts
+  ☐ SEO
+  ☐ Categories
+
+Markdown:
+  ☐ Add mdsvex markdown preprocessor
+  ☐ Plugins
+  ☐ Highlight
+
+Site:
+  ☐ Theming
+  ☐ Newsletter
+  ☐ RSS Feed
+  ☐ Sitemap
+  ☐ Analytics
+  
