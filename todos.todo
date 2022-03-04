@@ -1,11 +1,11 @@
 Token:
-  ☐ Create GitHub token
-  ☐ Create .env file for GitHub token
-  ☐ Add .env.example
+  ✔ Create GitHub token @done
+  ✔ Create .env file for GitHub token @done
+  ✔ Add .env.example @done
 
 Posts:
-  ☐ List posts
-  ☐ View post by slug
+  ✔ List posts @done
+  ✔ View post by slug @done
   ☐ Add post
   ☐ Remove post
   ☐ Edit post
@@ -14,14 +14,16 @@ Posts:
   ☐ Categories
 
 Markdown:
-  ☐ Add mdsvex markdown preprocessor
+  ☐ Mdsvex
   ☐ Plugins
   ☐ Highlight
 
 Site:
   ☐ Theming
+  ☐ Page transitions
   ☐ Newsletter
   ☐ RSS Feed
   ☐ Sitemap
   ☐ Analytics
+  ☐ Uses
   
