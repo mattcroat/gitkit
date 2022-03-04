@@ -6,7 +6,7 @@
 
 <section>
 	{#each slugs as slug}
-		<a href={slug}>Link</a>
+		<a href={slug}>Post</a>
 	{/each}
 </section>
 
