@@ -2,6 +2,14 @@
 	import '$root/styles/global.css'
 </script>
 
-<a href="/">Home</a>
+<nav>
+	<a href="/">Home</a>
+</nav>
 
 <slot />
+
+<style>
+	nav {
+		padding: 2rem;
+	}
+</style>
