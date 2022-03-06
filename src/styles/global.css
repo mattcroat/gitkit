@@ -34,6 +34,8 @@ body {
 }
 
 body {
+	display: flex;
+	flex-direction: column;
 	font-family: 'Poppins', sans-serif;
 	font-size: var(--font-18);
 	color: hsl(0 0% 98%);
@@ -56,4 +58,15 @@ a {
 
 a:hover {
 	text-decoration: underline;
+}
+
+button {
+	padding: 1.4rem;
+	font-size: inherit;
+	font-weight: 700;
+	color: inherit;
+	background: black;
+	border: none;
+	border-radius: 1rem;
+	cursor: pointer;
 }

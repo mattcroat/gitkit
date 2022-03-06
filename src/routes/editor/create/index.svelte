@@ -42,15 +42,4 @@ published: '2022-1-1'
 		border-radius: 4px;
 		border: none;
 	}
-
-	button {
-		padding: 1.4rem;
-		font-size: inherit;
-		font-weight: 700;
-		color: inherit;
-		background: black;
-		border: none;
-		border-radius: 1rem;
-		cursor: pointer;
-	}
 </style>
