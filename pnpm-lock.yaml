@@ -13,6 +13,7 @@ specifiers:
   gray-matter: ^4.0.3
   prettier: ^2.5.1
   prettier-plugin-svelte: ^2.5.0
+  snarkdown: ^2.0.0
   svelte: ^3.44.0
   svelte-check: ^2.2.6
   svelte-preprocess: ^4.10.1
@@ -34,6 +35,7 @@ devDependencies:
   gray-matter: 4.0.3
   prettier: 2.5.1
   prettier-plugin-svelte: 2.6.0_prettier@2.5.1+svelte@3.46.4
+  snarkdown: 2.0.0
   svelte: 3.46.4
   svelte-check: 2.4.5_svelte@3.46.4
   svelte-preprocess: 4.10.4_svelte@3.46.4+typescript@4.5.5
@@ -2619,6 +2621,10 @@ packages:
   /smart-buffer/4.2.0:
     resolution: {integrity: sha512-94hK0Hh8rPqQl2xXc3HsaBoOXKV20MToPkcXvwbISWLEs+64sBq5kFgn2kJDHb1Pry9yrP0dxrCI9RRci7RXKg==}
     engines: {node: '>= 6.0.0', npm: '>= 3.0.0'}
+    dev: true
+
+  /snarkdown/2.0.0:
+    resolution: {integrity: sha512-MgL/7k/AZdXCTJiNgrO7chgDqaB9FGM/1Tvlcenenb7div6obaDATzs16JhFyHHBGodHT3B7RzRc5qk8pFhg3A==}
     dev: true
 
   /socks-proxy-agent/6.1.1:
