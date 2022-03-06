@@ -10,8 +10,14 @@ Posts:
   ✔ Remove post @done
   ✔ Edit post @done
   ☐ Drafts
-  ☐ SEO
   ☐ Categories
+  ☐ Caching
+
+Editor:
+  ✔ Show content @done
+  ✔ Preview @done
+  ☐ Branch posts
+  ☐ Autosave
 
 Markdown:
   ✔ Frontmatter @done
@@ -21,10 +27,11 @@ Markdown:
 
 Site:
   ☐ A11Y
+  ☐ SEO
   ☐ Theming
   ☐ Page transitions
   ☐ Newsletter
-  ☐ RSS Feed
+  ☐ RSS feed
   ☐ Sitemap
   ☐ Analytics
   ☐ Uses
