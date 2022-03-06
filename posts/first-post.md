@@ -5,4 +5,4 @@ slug: 'test'
 published: '2022-1-1'
 ---
 
-Test
+First post.
