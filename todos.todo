@@ -6,19 +6,21 @@ Token:
 Posts:
   ✔ List posts @done
   ✔ View post by slug @done
-  ☐ Add post
-  ☐ Remove post
-  ☐ Edit post
+  ✔ Add post @done
+  ✔ Remove post @done
+  ✔ Edit post @done
   ☐ Drafts
   ☐ SEO
   ☐ Categories
 
 Markdown:
+  ✔ Frontmatter @done
   ☐ Mdsvex
   ☐ Plugins
   ☐ Highlight
 
 Site:
+  ☐ A11Y
   ☐ Theming
   ☐ Page transitions
   ☐ Newsletter
@@ -26,4 +28,9 @@ Site:
   ☐ Sitemap
   ☐ Analytics
   ☐ Uses
+
+Test:
+  ☐ Posts
+  ☐ Theming
+  ☐ Newsletter
   
