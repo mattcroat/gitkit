@@ -1,12 +1,14 @@
 <script lang="ts">
-	export let slugs: string[]
+	import type { PostItemType } from '$root/types'
+
+	export let posts: PostItemType[] = []
 </script>
 
 <h1>Posts</h1>
 
 <section>
-	{#each slugs as slug}
-		<a href={slug}>Post</a>
+	{#each posts as post}
+		<a href={post.slug}>{post.title}</a>
 	{/each}
 </section>
 

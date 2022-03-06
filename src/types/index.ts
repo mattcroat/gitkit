@@ -14,3 +14,15 @@ export type GitHubAPIResponseType = {
 		html: string
 	}
 }
+
+export type RateAPIResponseType = {
+	limit: number
+	used: number
+	remaining: number
+	reset: number
+}
+
+export type PostItemType = {
+	title: string
+	slug: string
+}

@@ -1,5 +1,7 @@
 <script lang="ts">
-	export let posts = []
+	import type { PostItemType } from '$root/types'
+
+	export let posts: PostItemType[] = []
 </script>
 
 <main>
@@ -13,7 +15,7 @@
 		<ul class="posts">
 			{#each posts as post}
 				<li>
-					<a href="/editor/edit/{post}">{post}</a>
+					<a href="/editor/edit/{post.slug}">{post.title}</a>
 					<form action="/editor?_method=delete" method="post">
 						<input type="hidden" name="slug" value={post} />
 						<button type="submit">Remove</button>

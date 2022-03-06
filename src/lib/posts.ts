@@ -1,10 +1,18 @@
+import matter from 'gray-matter'
+
 import { postsUrl } from './config'
-import type { GitHubAPIResponseType } from '$root/types'
+import type { GitHubAPIResponseType, RateAPIResponseType } from '$root/types'
 
 const headers = {
 	// GitHub suggests to include the API version
 	Accept: 'application/vnd.github.v3+json',
 	Authorization: `token ${process.env.GH_TOKEN}`
+}
+
+export async function getRateLimit(): Promise<RateAPIResponseType> {
+	const response = await fetch('https://api.github.com/rate_limit', { headers })
+	const { resources } = await response.json()
+	return resources.core
 }
 
 async function getPostSHA(slug: string): Promise<string> {
@@ -24,13 +32,21 @@ export async function getPosts(): Promise<string[]> {
 		throw new Error('Could not fetch posts. 💩')
 	}
 
-	const posts: GitHubAPIResponseType[] = await response.json()
-	const slugs = posts.map((post) => post.name.replace('.md', ''))
+	const postsData: GitHubAPIResponseType[] = await response.json()
+	const slugs = postsData.map((post) => post.name.replace('.md', ''))
+
+	const posts = []
+
+	for (const slug of slugs) {
+		const post = await getPost(slug)
+		const { data } = matter(post)
+		posts.push({ slug, title: data.title })
+	}
 
 	// etag
 	// console.log(response.headers.get('etag'))
 
-	return slugs
+	return posts
 }
 
 export async function getPost(slug: string): Promise<string> {

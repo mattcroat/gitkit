@@ -3,10 +3,10 @@ import type { RequestHandler } from '@sveltejs/kit'
 import { getPosts, removePost } from '$root/lib/posts'
 
 export const get: RequestHandler = async () => {
-	const slugs = await getPosts()
+	const posts = await getPosts()
 
 	return {
-		body: { posts: slugs }
+		body: { posts }
 	}
 }
 
