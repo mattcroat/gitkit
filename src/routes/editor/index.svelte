@@ -13,7 +13,7 @@
 		<ul class="posts">
 			{#each posts as post}
 				<li>
-					<a href="/editor/{post}">{post}</a>
+					<a href="/editor/edit/{post}">{post}</a>
 					<form action="/editor?_method=delete" method="post">
 						<input type="hidden" name="slug" value={post} />
 						<button type="submit">Remove</button>
