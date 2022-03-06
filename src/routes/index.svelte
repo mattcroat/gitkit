@@ -4,16 +4,17 @@
 	export let posts: PostItemType[] = []
 </script>
 
-<h1>Posts</h1>
-
 <section>
+	<h2>Posts</h2>
+
 	{#each posts as post}
-		<a href={post.slug}>{post.title}</a>
+		<a href={post.slug} sveltekit:prefetch>{post.title}</a>
 	{/each}
 </section>
 
 <style>
 	section {
+		padding: 1rem 2rem;
 		display: grid;
 		justify-content: start;
 	}

@@ -6,7 +6,7 @@
 
 <main>
 	<section>
-		<h1>Create Post</h1>
+		<h2>Create Post</h2>
 		<a href="/editor/create">+ Create Post</a>
 	</section>
 
@@ -15,7 +15,7 @@
 		<ul class="posts">
 			{#each posts as post}
 				<li>
-					<a href="/editor/edit/{post.slug}">{post.title}</a>
+					<a href="/editor/edit/{post.slug}" sveltekit:prefetch>{post.title}</a>
 					<form action="/editor?_method=delete" method="post">
 						<input type="hidden" name="slug" value={post} />
 						<button type="submit">Remove</button>
