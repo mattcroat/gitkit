@@ -18,18 +18,22 @@ published: '2022-1-1'
 - list item 3
 
 - list item 1
-  - nested list item
-  - nested list item
+    - nested list item 1
+    - nested list item 2
 - list item 2
-  - nested list item
+    - nested list item 1
+
+1. ordered list item 1
+2. ordered list item 2
+3. ordered list item 3
+4. ordered list item 4
 
 **bold** *italic* ~~striketrough~~
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et tempor mi. Nunc sit amet tincidunt ligula. Nam rhoncus mattis nisl. Etiam lobortis urna ut tristique rhoncus. Etiam dui mi, facilisis at orci id, pellentesque varius enim. Vestibulum pellentesque eleifend convallis. Ut et eros rhoncus, tincidunt neque vitae, faucibus nisi. Morbi tristique placerat porttitor.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et tempor mi. Nunc sit amet tincidunt ligula. Nam rhoncus mattis nisl. Etiam lobortis urna ut tristique rhoncus. Etiam dui mi, facilisis at orci id, pellentesque varius enim. Vestibulum pellentesque eleifend convallis. Ut et eros rhoncus, tincidunt neque vitae, faucibus nisi. Morbi tristique placerat porttitor. 
 
-Mauris porta dapibus condimentum. Aliquam porttitor lectus eget efficitur suscipit. Aenean accumsan ligula sed ullamcorper interdum. Proin cursus placerat metus. Nam velit ante, egestas nec tellus vel, condimentum ornare erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Integer rhoncus neque nec rutrum imperdiet. Vivamus at ornare velit. Nulla at metus vitae nibh tincidunt finibus vel id leo. Mauris viverra eros ut orci faucibus fringilla.
 
-```js:example.js {2} {showLineNumbers}
+```js
 // comment
 
 /*
