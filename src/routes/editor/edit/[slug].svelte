@@ -1,10 +1,10 @@
 <script lang="ts">
 	import snarkdown from 'snarkdown'
 
-	export let slug = ''
-	export let content = ''
+	export let slug: string
+	export let markdown: string
 
-	$: preview = content.replace(/^---[\s\S]*---$/gm, '')
+	$: markdownPreview = markdown.replace(/^---[\s\S]*---$/gm, '')
 </script>
 
 <h2>Edit post</h2>
@@ -15,7 +15,7 @@
 		<textarea
 			aria-label="Markdown editor"
 			class="editor"
-			bind:value={content}
+			bind:value={markdown}
 			name="content"
 			id="content"
 		/>
@@ -23,7 +23,7 @@
 	</form>
 
 	<section class="preview">
-		{@html snarkdown(preview)}
+		{@html snarkdown(markdownPreview)}
 	</section>
 </main>
 

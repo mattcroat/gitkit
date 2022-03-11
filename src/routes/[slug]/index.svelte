@@ -1,9 +1,12 @@
 <script lang="ts">
-	export let post
+	import type { FrontMatterType } from '$root/types'
+
+	export let content: string
+	export let frontmatter: FrontMatterType
 </script>
 
-<h1>Post</h1>
+<svelte:head>
+	<title>{frontmatter.title}</title>
+</svelte:head>
 
-<pre>
-{post}
-</pre>
+{@html content}

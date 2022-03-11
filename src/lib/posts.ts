@@ -1,7 +1,11 @@
-import matter from 'gray-matter'
-
+import { markdownToHTML } from './markdown'
 import { postsUrl } from './config'
-import type { GitHubAPIResponseType, RateAPIResponseType } from '$root/types'
+import type {
+	GitHubAPIResponseType,
+	PostItemType,
+	PostType,
+	RateAPIResponseType
+} from '$root/types'
 
 const headers = {
 	// GitHub suggests to include the API version
@@ -25,7 +29,7 @@ async function getPostSHA(slug: string): Promise<string> {
 	return (await response.json()).sha
 }
 
-export async function getPosts(): Promise<string[]> {
+export async function getPosts(): Promise<PostItemType[]> {
 	const response = await fetch(postsUrl, { headers })
 
 	if (!response.ok) {
@@ -36,11 +40,9 @@ export async function getPosts(): Promise<string[]> {
 	const slugs = postsData.map((post) => post.name.replace('.md', ''))
 
 	const posts = []
-
 	for (const slug of slugs) {
 		const post = await getPost(slug)
-		const { data } = matter(post)
-		posts.push({ slug, title: data.title })
+		posts.push({ slug, title: post.frontmatter.title })
 	}
 
 	// etag
@@ -49,7 +51,7 @@ export async function getPosts(): Promise<string[]> {
 	return posts
 }
 
-export async function getPost(slug: string): Promise<string> {
+export async function getPost(slug: string): Promise<PostType> {
 	const postUrl = `${postsUrl}/${slug}.md`
 
 	const response = await fetch(postUrl, {
@@ -64,10 +66,10 @@ export async function getPost(slug: string): Promise<string> {
 		throw new Error(`Could not fetch ${slug}`)
 	}
 
-	// this should be turned into markdown
-	const post = await response.text()
+	const postMarkdown = await response.text()
+	const { content, frontmatter } = await markdownToHTML(postMarkdown)
 
-	return post
+	return { content, frontmatter, postMarkdown }
 }
 
 export async function createPost(slug: string, content: string): Promise<void> {

@@ -21,9 +21,19 @@ Editor:
 
 Markdown:
   ✔ Frontmatter @done
-  ☐ Mdsvex
   ☐ Plugins
+    ☐ rehype-code-titles
+    ☐ rehype-prism-plus
+    ☐ remark-gfm
+    ☐ remark-autolink-headings
+    ☐ remark-slug
+    ☐ @silvenon/remark-smartypants
+    ☐ remark-toc
+    ☐ remark-unwrap-images
   ☐ Highlight
+    ☐ Prism or Shiki
+  ☐ Able to copy code
+  ☐ Image dimensions
 
 Site:
   ☐ A11Y

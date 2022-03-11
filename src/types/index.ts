@@ -26,3 +26,16 @@ export type PostItemType = {
 	title: string
 	slug: string
 }
+
+export type FrontMatterType = {
+	title: string
+	description: string
+	slug: string
+	published: string
+}
+
+export type PostType = {
+	content: string
+	frontmatter: FrontMatterType
+	postMarkdown: string
+}
