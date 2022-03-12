@@ -34,6 +34,7 @@
 	"type": "module",
 	"dependencies": {
 		"env-cmd": "^10.1.0",
+		"monaco-editor": "^0.33.0",
 		"rehype-stringify": "^9.0.3",
 		"remark-parse": "^10.0.1",
 		"remark-rehype": "^10.1.0",

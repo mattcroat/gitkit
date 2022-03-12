@@ -11,6 +11,7 @@ specifiers:
   eslint-config-prettier: ^8.3.0
   eslint-plugin-svelte3: ^3.2.1
   gray-matter: ^4.0.3
+  monaco-editor: ^0.33.0
   prettier: ^2.5.1
   prettier-plugin-svelte: ^2.5.0
   rehype-stringify: ^9.0.3
@@ -26,6 +27,7 @@ specifiers:
 
 dependencies:
   env-cmd: 10.1.0
+  monaco-editor: 0.33.0
   rehype-stringify: 9.0.3
   remark-parse: 10.0.1
   remark-rehype: 10.1.0
@@ -2553,6 +2555,10 @@ packages:
     dependencies:
       minimist: 1.2.5
     dev: true
+
+  /monaco-editor/0.33.0:
+    resolution: {integrity: sha512-VcRWPSLIUEgQJQIE0pVT8FcGBIgFoxz7jtqctE+IiCxWugD0DwgyQBcZBhdSrdMC84eumoqMZsGl2GTreOzwqw==}
+    dev: false
 
   /mri/1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
