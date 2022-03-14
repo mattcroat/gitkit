@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { onMount } from 'svelte'
+	import { getContext, onMount } from 'svelte'
+	import type { Writable } from 'svelte/store'
 	import type monaco from 'monaco-editor'
 	import jsonWorker from 'monaco-editor/esm/vs/language/json/json.worker?worker'
 	import cssWorker from 'monaco-editor/esm/vs/language/css/css.worker?worker'
@@ -10,7 +11,7 @@
 	let editorEl: HTMLDivElement
 	let editor: monaco.editor.IStandaloneCodeEditor
 
-	export let markdown: string
+	const markdown: Writable<string> = getContext('markdown')
 
 	onMount(async () => {
 		// @ts-ignore
@@ -38,7 +39,7 @@
 		const monaco = await import('monaco-editor')
 
 		editor = monaco.editor.create(editorEl, {
-			value: markdown,
+			value: $markdown,
 			language: 'markdown',
 			lineNumbers: 'off',
 			theme: 'vs-dark',
@@ -50,7 +51,7 @@
 		})
 
 		editor.onDidChangeModelContent(() => {
-			markdown = editor.getValue()
+			$markdown = editor.getValue()
 		})
 
 		return () => {
@@ -60,9 +61,3 @@
 </script>
 
 <div bind:this={editorEl} class="editor" />
-
-<style>
-	.editor {
-		height: 100%;
-	}
-</style>

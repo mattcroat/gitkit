@@ -1,30 +1,13 @@
 <script lang="ts">
-	import Editor from '$root/components/editor.svelte'
-	import Preview from '$root/components/preview.svelte'
+	import { setContext } from 'svelte'
+	import { writable } from 'svelte/store'
 
-	export let slug: string
+	import Editor from '$root/components/editor/index.svelte'
+
 	export let markdown: string
+
+	const content = writable<string>(markdown)
+	setContext('markdown', content)
 </script>
 
-<div class="toolbar">
-	<form method="post">
-		<input type="hidden" name="slug" value={slug} />
-		<button class="save" type="submit">💾 Save</button>
-	</form>
-</div>
-
-<main>
-	<Editor bind:markdown />
-	<Preview bind:markdown />
-</main>
-
-<style>
-	main {
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-	}
-
-	.toolbar {
-		padding: 1rem;
-	}
-</style>
+<Editor />

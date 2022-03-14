@@ -34,8 +34,6 @@ body {
 }
 
 body {
-	display: flex;
-	flex-direction: column;
 	font-family: 'Poppins', sans-serif;
 	font-size: var(--font-18);
 	color: hsl(0 0% 98%);
