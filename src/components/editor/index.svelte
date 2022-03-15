@@ -5,19 +5,23 @@
 	import Toolbar from './toolbar.svelte'
 	import Editor from './editor.svelte'
 	import Preview from './preview.svelte'
+	import Toggle from './toggle.svelte'
 
-	export let title: string
-	export let markdown: string
+	export let title = ''
+	export let markdown = ''
 
-	const post = writable({ title, markdown })
+	const post = writable({ title, markdown, preview: true })
 	setContext('post', post)
+
+	$: columns = $post.preview ? 'repeat(2, 50%)' : '1fr'
 </script>
 
 <div class="editor">
 	<Toolbar />
-	<main>
+	<main style="--columns: {columns}">
 		<Editor />
 		<Preview />
+		<Toggle />
 	</main>
 </div>
 
@@ -30,7 +34,8 @@
 	}
 
 	main {
+		position: relative;
 		display: grid;
-		grid-template-columns: repeat(2, 50%);
+		grid-template-columns: var(--columns);
 	}
 </style>

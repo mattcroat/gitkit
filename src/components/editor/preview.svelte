@@ -7,11 +7,13 @@
 	$: preview = $post.markdown.replace(/^---[\s\S]*---$/gm, '')
 </script>
 
-<section class="preview">
-	<div class="prose">
-		{@html marked(preview)}
-	</div>
-</section>
+{#if $post.preview}
+	<section class="preview">
+		<div class="prose">
+			{@html marked(preview)}
+		</div>
+	</section>
+{/if}
 
 <style>
 	.preview {

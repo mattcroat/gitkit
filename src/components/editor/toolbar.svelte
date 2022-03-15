@@ -10,6 +10,8 @@
 	<form method="post">
 		<button class="save" type="submit">💾 Save</button>
 	</form>
+	<a href="/">👁️ View</a>
+	<a href="/">⌛️ Versions</a>
 </div>
 
 <style>
@@ -31,7 +33,8 @@
 		border-right: 1px solid hsl(0 0% 20%);
 	}
 
-	form {
+	form,
+	a {
 		color: hsl(0 0% 40%);
 	}
 </style>

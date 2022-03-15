@@ -42,4 +42,8 @@ export type PostType = {
 	postMarkdown: string
 }
 
-export type EditorPostType = Writable<{ title: string; markdown: string }>
+export type EditorPostType = Writable<{
+	title: string
+	markdown: string
+	preview: boolean
+}>
