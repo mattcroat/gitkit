@@ -3,10 +3,11 @@ import type { RequestHandler } from '@sveltejs/kit'
 import { editPost, getPost } from '$root/lib/posts'
 
 export const get: RequestHandler = async ({ params }) => {
-	const { postMarkdown } = await getPost(params.slug)
+	const { frontmatter, postMarkdown } = await getPost(params.slug)
 
 	return {
 		body: {
+			title: frontmatter.title,
 			markdown: postMarkdown
 		}
 	}

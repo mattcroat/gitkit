@@ -1,17 +1,17 @@
 <script lang="ts">
 	import { getContext, onMount } from 'svelte'
-	import type { Writable } from 'svelte/store'
 	import type monaco from 'monaco-editor'
 	import jsonWorker from 'monaco-editor/esm/vs/language/json/json.worker?worker'
 	import cssWorker from 'monaco-editor/esm/vs/language/css/css.worker?worker'
 	import htmlWorker from 'monaco-editor/esm/vs/language/html/html.worker?worker'
 	import tsWorker from 'monaco-editor/esm/vs/language/typescript/ts.worker?worker'
 	import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker'
+	import type { EditorPostType } from '$root/types'
 
 	let editorEl: HTMLDivElement
 	let editor: monaco.editor.IStandaloneCodeEditor
 
-	const markdown: Writable<string> = getContext('markdown')
+	const post: EditorPostType = getContext('post')
 
 	onMount(async () => {
 		// @ts-ignore
@@ -39,19 +39,28 @@
 		const monaco = await import('monaco-editor')
 
 		editor = monaco.editor.create(editorEl, {
-			value: $markdown,
+			value: $post.markdown,
 			language: 'markdown',
 			lineNumbers: 'off',
 			theme: 'vs-dark',
 			minimap: { enabled: false },
+			fontFamily: 'Poppins',
 			fontSize: 18,
 			tabSize: 2,
 			wordWrap: 'on',
-			cursorBlinking: 'solid'
+			cursorBlinking: 'solid',
+			automaticLayout: true,
+			scrollBeyondLastLine: false,
+			smoothScrolling: true,
+			scrollbar: {
+				useShadows: false,
+				verticalScrollbarSize: 2
+			},
+			renderLineHighlight: 'none'
 		})
 
 		editor.onDidChangeModelContent(() => {
-			$markdown = editor.getValue()
+			$post.markdown = editor.getValue()
 		})
 
 		return () => {

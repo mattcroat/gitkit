@@ -1,3 +1,5 @@
+import type { Writable } from 'svelte/store'
+
 export type GitHubAPIResponseType = {
 	name: string
 	path: string
@@ -39,3 +41,5 @@ export type PostType = {
 	frontmatter: FrontMatterType
 	postMarkdown: string
 }
+
+export type EditorPostType = Writable<{ title: string; markdown: string }>
