@@ -1,6 +1,21 @@
+<script lang="ts">
+	import { enhance } from '$root/lib/form'
+
+	const frontmatter = `
+	---
+	title: Test
+	description: Test
+	slug: 'test'
+	published: '2022-1-1'
+	---	
+	`
+		.trim()
+		.replace(/\t/g, '')
+</script>
+
 <h1>Add Post</h1>
 
-<form action="/editor/create" method="post">
+<form action="/editor/create" method="post" use:enhance>
 	<div class="field">
 		<label for="slug">Slug</label>
 		<input type="text" name="slug" />
@@ -9,12 +24,7 @@
 	<div class="field">
 		<label for="content">Content</label>
 		<textarea
-			value="---
-title: Test
-description: Test
-slug: 'test'
-published: '2022-1-1'
----"
+			value={frontmatter}
 			name="content"
 			id="content"
 			cols="30"

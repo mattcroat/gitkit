@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { getContext } from 'svelte'
+
+	import { enhance } from '$root/lib/form'
 	import type { EditorPostType } from '$root/types'
 
 	const post: EditorPostType = getContext('post')
@@ -7,7 +9,8 @@
 
 <div class="toolbar">
 	<span class="title">{$post.title}</span>
-	<form method="post">
+	<form method="post" use:enhance>
+		<input type="hidden" name="markdown" value={$post.markdown} />
 		<button class="save" type="submit">💾 Save</button>
 	</form>
 	<a href="/">👁️ View</a>

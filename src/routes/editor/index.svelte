@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { enhance } from '$root/lib/form'
 	import type { PostItemType } from '$root/types'
 
 	export let posts: PostItemType[] = []
@@ -16,8 +17,8 @@
 			{#each posts as post}
 				<li>
 					<a href="/editor/edit/{post.slug}" sveltekit:prefetch>{post.title}</a>
-					<form action="/editor?_method=delete" method="post">
-						<input type="hidden" name="slug" value={post} />
+					<form action="/editor?_method=delete" method="post" use:enhance>
+						<input type="hidden" name="slug" value={post.slug} />
 						<button type="submit">Remove</button>
 					</form>
 				</li>

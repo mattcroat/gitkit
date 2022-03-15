@@ -15,9 +15,9 @@ export const get: RequestHandler = async ({ params }) => {
 
 export const post: RequestHandler = async ({ params, request }) => {
 	const form = await request.formData()
-	const content = String(form.get('content'))
+	const markdown = String(form.get('markdown'))
 
-	await editPost(params.slug, content)
+	await editPost(params.slug, markdown)
 
 	return {
 		status: 303,
