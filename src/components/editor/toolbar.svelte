@@ -28,14 +28,11 @@
 		</svg>
 	</a>
 	<span class="title">{$post.title}</span>
-	<!-- redirect -->
-	<!-- accept/json -->
-	<form method="post" use:enhance={{ redirect: '/editor' }}>
+	<form method="post" use:enhance>
 		<input type="hidden" name="markdown" value={$post.markdown} />
 		<button class="save" type="submit">💾 Save</button>
 	</form>
 	<a href={viewFileUrl}>👁️ View</a>
-	<a href="/">⌛️ Versions</a>
 </div>
 
 <style>

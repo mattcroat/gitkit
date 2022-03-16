@@ -49,7 +49,7 @@ export const enhance: Enhance = (
 	async function handleSubmit(event: Event) {
 		event.preventDefault()
 
-		const token = currentToken ?? {}
+		const token = (currentToken = {})
 		const data = new FormData(form)
 
 		if (pending) pending({ data, form })
@@ -68,14 +68,15 @@ export const enhance: Enhance = (
 			if (response.ok) {
 				if (result) result({ data, form, response })
 
+				if (redirect) {
+					goto(redirect)
+					return
+				}
+
 				const url = new URL(form.action)
 				url.search = ''
 				url.hash = ''
 				invalidate(url.href)
-
-				if (redirect) {
-					goto(redirect)
-				}
 			} else if (error) {
 				error({ data, form, error: null, response })
 			} else {
