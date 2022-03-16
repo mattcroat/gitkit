@@ -1,4 +1,4 @@
-import { invalidate } from '$app/navigation'
+import { goto, invalidate } from '$app/navigation'
 
 /*
   Progressive enhancement for forms:
@@ -35,11 +35,15 @@ type Parameters = {
 		response: Response
 		form: HTMLFormElement
 	}) => void
+	redirect?: string
 }
 
 type Destroy = { destroy: () => void }
 
-export const enhance: Enhance = (form, { pending, error, result } = {}) => {
+export const enhance: Enhance = (
+	form,
+	{ pending, error, result, redirect } = {}
+) => {
 	let currentToken: unknown
 
 	async function handleSubmit(event: Event) {
@@ -68,6 +72,10 @@ export const enhance: Enhance = (form, { pending, error, result } = {}) => {
 				url.search = ''
 				url.hash = ''
 				invalidate(url.href)
+
+				if (redirect) {
+					goto(redirect)
+				}
 			} else if (error) {
 				error({ data, form, error: null, response })
 			} else {

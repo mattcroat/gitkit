@@ -3,7 +3,12 @@
 	import frontmatter from './frontmatter'
 </script>
 
-<form action="/editor/create" method="post" autocomplete="off" use:enhance>
+<form
+	action="/editor/create"
+	method="post"
+	autocomplete="off"
+	use:enhance={{ redirect: '/editor' }}
+>
 	<div class="field">
 		<label for="slug">Slug</label>
 		<input type="text" name="slug" />

@@ -30,7 +30,7 @@
 	<span class="title">{$post.title}</span>
 	<!-- redirect -->
 	<!-- accept/json -->
-	<form method="post" use:enhance>
+	<form method="post" use:enhance={{ redirect: '/editor' }}>
 		<input type="hidden" name="markdown" value={$post.markdown} />
 		<button class="save" type="submit">💾 Save</button>
 	</form>
