@@ -75,12 +75,7 @@ git checkout -b feature/pokemon
 
 Your terminal and editor indicate you're on the right branch:
 
-<Image
-  height={1052}
-  width={960}
-  src="/images/clean-git-history/vs-code.png"
-  alt="VS Code Editor"
-/>
+![/images/clean-git-history/vs-code.png]((VS Code Editor))
 
 Add the `pokemon.js` file:
 
@@ -106,12 +101,7 @@ git add styles.css
 git commit -m "style: Add Pokemon styles"
 ```
 
-<Image
-  height={185}
-  width={957}
-  src="/images/clean-git-history/first-commits.png"
-  alt="Shows first couple of commits"
-/>
+![Shows first couple of commits](/images/clean-git-history/first-commits.png)
 
 At this stage, we could do `git checkout main` and `git merge feature/pokemon` to merge the changes.
 
@@ -139,12 +129,7 @@ If you're playing around and make a mistake you can always do `git reset --hard 
 
 After we're done merging the changes we should remove the branch with `git branch -d feature/pokemon` since we no longer need it (you will have to repeat the previous steps if you do it).
 
-<Image
-  height={178}
-  width={958}
-  src="/images/clean-git-history/first-merge.png"
-  alt="Shows first couple of commits"
-/>
+![Shows first couple of commits](/images/clean-git-history/first-merge.png)
 
 Instead of using merge, let us use **interactive rebase**.
 
@@ -178,12 +163,7 @@ git rebase -i HEAD~2
 
 The `-i` command-line parameter says: "run rebase in interactive mode". The `HEAD~2` specifies the last two commits in our Git history.
 
-<Image
-  height={1052}
-  width={960}
-  src="/images/clean-git-history/rebase-open.png"
-  alt="Shows rebase window"
-/>
+![Shows rebase window](/images/clean-git-history/rebase-open.png)
 
 You can ignore most of the output unless you want to read it. What's important are our commits at the top.
 
@@ -209,32 +189,17 @@ Let's take a look at the top of the file:
 
 After you're done save the file and close it. Another file is going to open. This is where we change the commit message.
 
-<Image
-  height={1052}
-  width={960}
-  src="/images/clean-git-history/rebase-commit.png"
-  alt="Shows rebase commit message window"
-/>
+![Shows rebase commit message window](/images/clean-git-history/rebase-commit.png)
 
 We can delete most of it and enter our commit message. Close it after you're done.
 
-<Image
-  height={1052}
-  width={960}
-  src="/images/clean-git-history/rebase-commit-change.png"
-  alt="Shows rebase commit change"
-/>
+![Shows rebase commit change](/images/clean-git-history/rebase-commit-change.png)
 
 If we change our mind we can <kbd>Ctrl</kbd> + <kbd>C</kbd> to stop what we're doing. We can stop the rebase at any point with `git rebase --abort`. After resolving any conflicts we use `git rebase --continue`.
 
 We are still on the `feature/pokemon` branch so let's `git checkout main`.
 
-<Image
-  height={144}
-  width={957}
-  src="/images/clean-git-history/rebase-checkout.png"
-  alt="Shows checkout to main branch after rebase"
-/>
+![Shows checkout to main branch after rebase](/images/clean-git-history/rebase-checkout.png)
 
 The only thing left to do is rebase the changes:
 
@@ -242,12 +207,7 @@ The only thing left to do is rebase the changes:
 git rebase feature/pokemon
 ```
 
-<Image
-  height={138}
-  width={956}
-  src="/images/clean-git-history/rebase-complete.png"
-  alt="Shows completed rebase on main branch"
-/>
+![Shows completed rebase on main branch](/images/clean-git-history/rebase-complete.png)
 
 That's it. Rebase is one of my favorite Git features. It's very powerful since it let's us have a Git History we can reason about.
 
@@ -265,12 +225,7 @@ Let's say we're working on the Pokemon feature. Our crack team of backend develo
 
 At one point our **feature branch** is going to get behind our main branch:
 
-<Image
-  height={217}
-  width={955}
-  src="/images/clean-git-history/feature-behind-upstream.png"
-  alt="Shows feature branch is behind upstream"
-/>
+![Shows feature branch is behind upstream](/images/clean-git-history/feature-behind-upstream.png)
 
 The above example shows how the "feat: Add Pokemon API" commit was pushed to our main branch meaning our feature branch is behind.
 
@@ -294,12 +249,7 @@ If we're on the `feature/pokemon` branch we can do a manual rebase:
 git rebase main
 ```
 
-<Image
-  height={261}
-  width={956}
-  src="/images/clean-git-history/feature-behind-rebase.png"
-  alt="Shows feature branch up to date with upstream"
-/>
+![Shows feature branch up to date with upstream](/images/clean-git-history/feature-behind-rebase.png)
 
 ```shell:terminal
 git log --oneline
