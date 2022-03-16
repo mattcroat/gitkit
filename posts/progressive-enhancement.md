@@ -5,4 +5,27 @@ slug: 'progressive-enhancement'
 published: '2022-1-1'
 ---
 
-Progressive enhancement is awesome!
+```js
+// Comment
+
+/*
+  Multiline comment
+*/
+
+function hello() {
+  console.log('Hello, World!')
+}
+```
+
+```html
+<article>
+  <h2>Heading</h2>
+  <p>Paragraph</p>
+</article>
+```
+
+```css
+body {
+  color: hsl(220 20% 10%);
+}
+```
