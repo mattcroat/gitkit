@@ -1,5 +1,5 @@
 ---
-title: Test
+title: First Post
 description: Test
 slug: 'test'
 published: '2022-1-1'
