@@ -75,7 +75,7 @@ git checkout -b feature/pokemon
 
 Your terminal and editor indicate you're on the right branch:
 
-![/images/clean-git-history/vs-code.png]((VS Code Editor))
+![VS Code Editor](/images/clean-git-history/vs-code.png)
 
 Add the `pokemon.js` file:
 
