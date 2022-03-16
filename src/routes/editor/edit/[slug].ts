@@ -7,6 +7,7 @@ export const get: RequestHandler = async ({ params }) => {
 
 	return {
 		body: {
+			slug: params.slug,
 			title: frontmatter.title,
 			markdown: postMarkdown
 		}

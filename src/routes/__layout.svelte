@@ -4,6 +4,7 @@
 
 <nav>
 	<a href="/">Home</a>
+	<a href="/editor">Editor</a>
 </nav>
 
 <slot />

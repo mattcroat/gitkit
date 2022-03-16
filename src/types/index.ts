@@ -43,6 +43,7 @@ export type PostType = {
 }
 
 export type EditorPostType = Writable<{
+	slug: string
 	title: string
 	markdown: string
 	preview: boolean

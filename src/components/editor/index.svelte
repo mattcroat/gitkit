@@ -7,10 +7,11 @@
 	import Preview from './preview.svelte'
 	import Toggle from './toggle.svelte'
 
+	export let slug = ''
 	export let title = ''
 	export let markdown = ''
 
-	const post = writable({ title, markdown, preview: true })
+	const post = writable({ slug, title, markdown, preview: true })
 	setContext('post', post)
 
 	$: columns = $post.preview ? 'repeat(2, 50%)' : '1fr'
