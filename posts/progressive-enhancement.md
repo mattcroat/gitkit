@@ -5,7 +5,7 @@ slug: 'progressive-enhancement'
 published: '2022-1-1'
 ---
 
-```js
+```js title="example.js" {highlight: '8..9'}
 // Comment
 
 /*
