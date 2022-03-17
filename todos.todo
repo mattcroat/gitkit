@@ -9,31 +9,34 @@ Posts:
   ✔ Add post @done
   ✔ Remove post @done
   ✔ Edit post @done
-  ☐ Drafts
+  ☐ Draft
   ☐ Categories
   ☐ Caching
+  ☐ Optimistic UI
 
 Editor:
   ✔ Show content @done
   ✔ Preview @done
-  ☐ Branch posts
-  ☐ Autosave
+  ✔ Able to edit post @done
+  ☐ Publish post from draft branch
+  ☐ Autosave to branch
+  ☐ Toast notifications
 
 Markdown:
-  ✔ Frontmatter @done
-  ☐ Plugins
-    ☐ rehype-code-titles
-    ☐ rehype-prism-plus
-    ☐ remark-gfm
-    ☐ remark-autolink-headings
-    ☐ remark-slug
-    ☐ @silvenon/remark-smartypants
-    ☐ remark-toc
-    ☐ remark-unwrap-images
-  ☐ Highlight
-    ☐ Prism or Shiki
-  ☐ Able to copy code
-  ☐ Image dimensions
+  General:
+    ✔ Frontmatter (gray-matter) @done
+    ☐ Able to copy code
+    ☐ Image dimensions
+  Code highlight:
+    ✔ Shiki-Twoslash (themes, line highlight and numbers) @done
+  Plugins:
+    ✔ remark-shiki-twoslash @done
+    ✔ remark-gfm @done
+    ✔ remark-autolink-headings @done
+    ✔ remark-slug @done
+    ✔ remark-smartypants @done
+    ✔ remark-toc @done
+    ✔ remark-unwrap-images @done
 
 Site:
   ☐ A11Y
@@ -44,8 +47,7 @@ Site:
   ☐ RSS feed
   ☐ Sitemap
   ☐ Analytics
-  ☐ Uses
-  ☐ Optimistic UI
+  ☐ Uses page
 
 Test:
   ☐ Posts
