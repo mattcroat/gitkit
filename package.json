@@ -36,9 +36,17 @@
 		"env-cmd": "^10.1.0",
 		"marked": "^4.0.12",
 		"monaco-editor": "^0.33.0",
+		"rehype-parse": "^8.0.4",
 		"rehype-stringify": "^9.0.3",
+		"remark-autolink-headings": "^7.0.1",
+		"remark-gfm": "^3.0.1",
 		"remark-parse": "^10.0.1",
 		"remark-rehype": "^10.1.0",
+		"remark-shiki-twoslash": "^3.0.9",
+		"remark-slug": "^7.0.1",
+		"remark-smartypants": "^2.0.0",
+		"remark-toc": "^8.0.1",
+		"remark-unwrap-images": "^3.0.1",
 		"unified": "^10.1.2"
 	}
 }

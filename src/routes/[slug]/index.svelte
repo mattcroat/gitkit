@@ -9,4 +9,6 @@
 	<title>{frontmatter.title}</title>
 </svelte:head>
 
-{@html content}
+<div class="prose">
+	{@html content}
+</div>
