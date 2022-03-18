@@ -17,7 +17,12 @@ import remarkUnwrapImages from 'remark-unwrap-images'
 
 import type { FrontMatterType } from '$root/types'
 
-export async function markdownToHTML(markdown: string) {
+type ContentType = {
+	content: string
+	frontmatter: FrontMatterType
+}
+
+export async function markdownToHTML(markdown: string): Promise<ContentType> {
 	const { content, data } = matter(markdown)
 
 	// I could use `compile` from mdsvex to get
@@ -55,4 +60,9 @@ export async function markdownToHTML(markdown: string) {
 		content: processedMarkdown as string,
 		frontmatter: data as FrontMatterType
 	}
+}
+
+export async function frontMatter(markdown: string): Promise<FrontMatterType> {
+	const { data: frontMatter } = matter(markdown)
+	return frontMatter as FrontMatterType
 }

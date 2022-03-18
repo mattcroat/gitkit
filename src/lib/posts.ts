@@ -1,4 +1,4 @@
-import { markdownToHTML } from './markdown'
+import { markdownToHTML, frontMatter } from './markdown'
 import { postsUrl } from './config'
 import type {
 	GitHubAPIResponseType,
@@ -29,6 +29,27 @@ async function getPostSHA(slug: string): Promise<string> {
 	return (await response.json()).sha
 }
 
+async function getPostFrontMatter(slug: string) {
+	const postUrl = `${postsUrl}/${slug}.md`
+
+	const response = await fetch(postUrl, {
+		headers: {
+			...headers,
+			// https://docs.github.com/en/rest/overview/media-types
+			Accept: 'application/vnd.github.v3.raw'
+		}
+	})
+
+	if (!response.ok) {
+		throw new Error(`Could not fetch ${slug}`)
+	}
+
+	const postMarkdown = await response.text()
+	const postFrontmatter = await frontMatter(postMarkdown)
+
+	return postFrontmatter
+}
+
 export async function getPosts(): Promise<PostItemType[]> {
 	const response = await fetch(postsUrl, { headers })
 
@@ -39,10 +60,10 @@ export async function getPosts(): Promise<PostItemType[]> {
 	const postsData: GitHubAPIResponseType[] = await response.json()
 	const slugs = postsData.map((post) => post.name.replace('.md', ''))
 
-	const posts = []
-	for (const slug of slugs) {
-		const post = await getPost(slug)
-		posts.push({ slug, title: post.frontmatter.title })
+	let posts = []
+	for (const postSlug of slugs) {
+		const { slug, title } = await getPostFrontMatter(postSlug)
+		posts = [...posts, { slug, title }]
 	}
 
 	// etag
