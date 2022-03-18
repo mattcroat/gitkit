@@ -1,5 +1,4 @@
 import { unified } from 'unified'
-import shikiTwoslash from 'remark-shiki-twoslash'
 import parseMarkdown from 'remark-parse'
 import serializeMarkdown from 'remark-stringify'
 import markdownToHtml from 'remark-rehype'
@@ -8,6 +7,7 @@ import serializeHtml from 'rehype-stringify'
 import matter from 'gray-matter'
 
 // plugins
+import shikiTwoslash from 'remark-shiki-twoslash'
 import remarkGfm from 'remark-gfm'
 import remarkHeadings from 'remark-autolink-headings'
 import remarkSlug from 'remark-slug'
@@ -20,9 +20,8 @@ import type { FrontMatterType } from '$root/types'
 export async function markdownToHTML(markdown: string) {
 	const { content, data } = matter(markdown)
 
-	// if I wanted I could use `compile` from mdsvex to get
+	// I could use `compile` from mdsvex to get
 	// Svelte components working inside Markdown
-
 	const result = await unified()
 		.use(parseMarkdown)
 		.use(serializeMarkdown)
