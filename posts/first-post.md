@@ -1,7 +1,7 @@
 ---
 title: First Post
 description: Test
-slug: 'test'
+slug: 'first-post'
 published: '2022-1-1'
 ---
 
