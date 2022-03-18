@@ -28,7 +28,7 @@ I find most explanations confusing because they spend time explaining features i
 
 Initialize a Git repository inside an empty folder:
 
-```shell:terminal
+```shell title="terminal"
 # initialize new Git project
 git init
 
@@ -41,7 +41,7 @@ git branch -m master main
 
 Set your code editor as the default Git editor:
 
-```shell:terminal
+```shell title="terminal"
 # check if you have your editor set up
 git config --get core.editor
 
@@ -71,7 +71,7 @@ We're tasked to add a feature to display a list of Pokemon. The steps required i
 - Creating a `feature/pokemon` branch
 - Adding a `pokemon.js` and `styles.css` file
 
-```shell:terminal
+```shell title="terminal"
 git checkout -b feature/pokemon
 ```
 
@@ -81,24 +81,24 @@ Your terminal and editor indicate you're on the right branch:
 
 Add the `pokemon.js` file:
 
-```js:pokemon.js
+```js title="pokemon.js"
 // Fetch, and display Pokemon
 ```
 
 Stage and commit the file:
 
-```shell:terminal
+```shell title="terminal"
 git add pokemon.js
 git commit -m "feat: Fetch, and display Pokemon"
 ```
 
 Do the same for `styles.css`:
 
-```css:styles.css
+```css title="styles.css"
 /* Pokemon styles */
 ```
 
-```shell:terminal
+```shell title="terminal"
 git add styles.css
 git commit -m "style: Add Pokemon styles"
 ```
@@ -109,7 +109,7 @@ At this stage, we could do `git checkout main` and `git merge feature/pokemon` t
 
 Let's look at the Git log:
 
-```shell:terminal
+```shell title="terminal"
 git log --oneline
 
 # fd9eb31 (HEAD -> feature/pokemon) style: Add Pokemon styles
@@ -119,7 +119,7 @@ git log --oneline
 
 If we merged the changes:
 
-```shell:terminal
+```shell title="terminal"
 git log --oneline
 
 # fd9eb31 (HEAD -> main, feature/pokemon) style: Add Pokemon styles
@@ -142,7 +142,7 @@ This gives us the ability to **alter** and even **reorder** our commits if we wa
 
 Let's take a look at the Git log so we understand what we want to accomplish:
 
-```shell:terminal
+```shell title="terminal"
 git log --oneline
 
 # c36072d (HEAD -> main) style: Add Pokemon styles
@@ -152,14 +152,14 @@ git log --oneline
 
 Wouldn't it be nicer if we could have only one feature commit that includes everything we have done? This is possible with rebase.
 
-```shell:terminal
+```shell title="terminal"
 # c36072d (HEAD -> main) feat: Add Pokemon
 # 3c03f44 Start of project
 ```
 
 Let's go back to our branch using `git checkout feature/pokemon` and start the rebase:
 
-```shell:terminal
+```shell title="terminal"
 git rebase -i HEAD~2
 ```
 
@@ -177,14 +177,14 @@ The most useful thing to us is:
 
 Let's take a look at the top of the file:
 
-```shell:terminal
+```shell title="terminal"
 # pick 0970ca5 feat: Fetch, and display Pokemon
 # pick 6b144c0 style: Add Pokemon styles
 ```
 
 **When squashing you leave the top commit alone.** We change "pick" to "squash" for others, or use the abbreviation:
 
-```shell:terminal
+```shell title="terminal"
 # pick 0970ca5 feat: Fetch, and display Pokemon
 # squash 6b144c0 style: Add Pokemon styles
 ```
@@ -205,7 +205,7 @@ We are still on the `feature/pokemon` branch so let's `git checkout main`.
 
 The only thing left to do is rebase the changes:
 
-```shell:terminal
+```shell title="terminal"
 git rebase feature/pokemon
 ```
 
@@ -231,7 +231,7 @@ At one point our **feature branch** is going to get behind our main branch:
 
 The above example shows how the "feat: Add Pokemon API" commit was pushed to our main branch meaning our feature branch is behind.
 
-```shell:terminal
+```shell title="terminal"
 git log --oneline
 
 # 7b9cdee (HEAD -> feature/pokemon) style: Add Pokemon styles
@@ -247,13 +247,13 @@ How do we base our changes on the latest commit?
 
 If we're on the `feature/pokemon` branch we can do a manual rebase:
 
-```shell:terminal
+```shell title="terminal"
 git rebase main
 ```
 
 ![Shows feature branch up to date with upstream](/images/clean-git-history/feature-behind-rebase.png)
 
-```shell:terminal
+```shell title="terminal"
 git log --oneline
 
 # 47c17c4 (HEAD -> feature/pokemon) style: Add Pokemon styles
