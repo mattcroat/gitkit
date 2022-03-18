@@ -1,7 +1,7 @@
 ---
 title: Clean Git History Using Rebase
 description: How to have a clean Git history using rebase
-slug: 'clean-git-history'
+slug: 'clean-git-history-using-rebase'
 published: '2021-6-7'
 category: 'git'
 image: '/images/social-image.png'
