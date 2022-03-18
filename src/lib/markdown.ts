@@ -1,7 +1,9 @@
 import { unified } from 'unified'
-import remarkShikiTwoslash from 'remark-shiki-twoslash'
+import shikiTwoslash from 'remark-shiki-twoslash'
 import parseMarkdown from 'remark-parse'
+import serializeMarkdown from 'remark-stringify'
 import markdownToHtml from 'remark-rehype'
+import markdownToHtmlAgain from 'rehype-raw'
 import serializeHtml from 'rehype-stringify'
 import matter from 'gray-matter'
 
@@ -19,14 +21,15 @@ export async function markdownToHTML(markdown: string) {
 	const { content, data } = matter(markdown)
 
 	// if I wanted I could use `compile` from mdsvex to get
-	// Svelte components working inside markdown
+	// Svelte components working inside Markdown
 
 	const result = await unified()
 		.use(parseMarkdown)
+		.use(serializeMarkdown)
 		.use([
 			// Syntax highlight
-			[remarkShikiTwoslash, { theme: 'dark-plus' }],
-			// GitHub flavored markdown
+			[shikiTwoslash, { theme: 'dark-plus' }],
+			// GitHub flavored Markdown
 			remarkGfm,
 			// Unique identifier for headings
 			remarkHeadings,
@@ -40,7 +43,11 @@ export async function markdownToHTML(markdown: string) {
 			// Remove paragraph around images
 			remarkUnwrapImages
 		])
-		.use(markdownToHtml)
+		.use(markdownToHtml, { allowDangerousHtml: true })
+		// At this point there's a mix of Markdown and HTML
+		// so `rehype-raw` is required to process it into an AST
+		// if you want to do further processing
+		.use(markdownToHtmlAgain)
 		.use(serializeHtml)
 		.process(content)
 	const processedMarkdown = result.value

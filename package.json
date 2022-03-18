@@ -37,6 +37,7 @@
 		"marked": "^4.0.12",
 		"monaco-editor": "^0.33.0",
 		"rehype-parse": "^8.0.4",
+		"rehype-raw": "^6.1.1",
 		"rehype-stringify": "^9.0.3",
 		"remark-autolink-headings": "^7.0.1",
 		"remark-gfm": "^3.0.1",
@@ -45,6 +46,7 @@
 		"remark-shiki-twoslash": "^3.0.9",
 		"remark-slug": "^7.0.1",
 		"remark-smartypants": "^2.0.0",
+		"remark-stringify": "^10.0.2",
 		"remark-toc": "^8.0.1",
 		"remark-unwrap-images": "^3.0.1",
 		"unified": "^10.1.2"
