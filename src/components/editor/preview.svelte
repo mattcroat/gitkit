@@ -1,16 +1,31 @@
 <script lang="ts">
 	import { getContext } from 'svelte'
-	import { marked } from 'marked'
 	import type { EditorPostType } from '$root/types'
 
 	const post: EditorPostType = getContext('post')
-	$: preview = $post.markdown.replace(/^---[\s\S]*---$/gm, '')
+
+	async function showPreview(postMarkdown) {
+		await fetch('/api/preview', {
+			method: 'post',
+			headers: { accept: 'application/json' },
+			body: JSON.stringify(postMarkdown)
+		})
+		const result = await fetch('/api/preview')
+		const data = await result.json()
+		return data
+	}
 </script>
 
 {#if $post.preview}
 	<section class="preview">
 		<div class="prose">
-			{@html marked(preview)}
+			{#await showPreview($post.markdown)}
+				<p>Processing...</p>
+			{:then data}
+				{@html data.content.content}
+			{:catch error}
+				<p>{error.message}</p>
+			{/await}
 		</div>
 	</section>
 {/if}
@@ -30,29 +45,5 @@
 
 	.preview:hover::-webkit-scrollbar-thumb {
 		background-color: hsl(0, 0%, 60%);
-	}
-
-	.prose {
-		max-width: 60ch;
-		display: grid;
-		gap: 2rem;
-	}
-
-	.prose :global(h2) {
-		margin: 2rem 0;
-	}
-
-	.prose :global(h2) {
-		margin: 2rem 0;
-	}
-
-	.prose :global(li) {
-		list-style-position: inside;
-	}
-
-	.prose :global(pre) {
-		padding: 1rem;
-		margin: 2rem 0;
-		background-color: hsl(0 0% 20%);
 	}
 </style>
