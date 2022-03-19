@@ -1,19 +1,19 @@
 import { unified } from 'unified'
-import parseMarkdown from 'remark-parse'
-import serializeMarkdown from 'remark-stringify'
-import markdownToHtml from 'remark-rehype'
-import markdownToHtmlAgain from 'rehype-raw'
-import serializeHtml from 'rehype-stringify'
+import fromMarkdown from 'remark-parse'
+import toMarkdown from 'remark-stringify'
+import fromMarkdownToHtml from 'remark-rehype'
+import toHtml from 'rehype-stringify'
 import matter from 'gray-matter'
 
 // plugins
-import shikiTwoslash from 'remark-shiki-twoslash'
 import remarkGfm from 'remark-gfm'
 import remarkHeadings from 'remark-autolink-headings'
 import remarkSlug from 'remark-slug'
 import remarkSmartypants from 'remark-smartypants'
 import remarkTableofContents from 'remark-toc'
 import remarkUnwrapImages from 'remark-unwrap-images'
+import rehypePrism from 'rehype-prism-plus'
+import rehypeCodeTitles from 'rehype-code-titles'
 
 import type { FrontMatterType } from '$root/types'
 
@@ -28,11 +28,8 @@ export async function markdownToHTML(markdown: string): Promise<ContentType> {
 	// I could use `compile` from mdsvex to get
 	// Svelte components working inside Markdown
 	const result = await unified()
-		.use(parseMarkdown)
-		.use(serializeMarkdown)
+		.use(fromMarkdown)
 		.use([
-			// Syntax highlight
-			[shikiTwoslash, { theme: 'dark-plus' }],
 			// GitHub flavored Markdown
 			remarkGfm,
 			// Unique identifier for headings
@@ -47,12 +44,11 @@ export async function markdownToHTML(markdown: string): Promise<ContentType> {
 			// Remove paragraph around images
 			remarkUnwrapImages
 		])
-		.use(markdownToHtml, { allowDangerousHtml: true })
-		// At this point there's a mix of Markdown and HTML
-		// so `rehype-raw` is required to process it into an AST
-		// if you want to do further processing
-		.use(markdownToHtmlAgain)
-		.use(serializeHtml)
+		.use(toMarkdown)
+		.use(fromMarkdownToHtml)
+		.use(rehypeCodeTitles)
+		.use([rehypePrism, { showLineNumbers: true }])
+		.use(toHtml)
 		.process(content)
 	const processedMarkdown = result.value
 

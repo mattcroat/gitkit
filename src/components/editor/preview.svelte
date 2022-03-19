@@ -1,31 +1,24 @@
 <script lang="ts">
 	import { getContext } from 'svelte'
+	import { io } from 'socket.io-client'
 	import type { EditorPostType } from '$root/types'
 
 	const post: EditorPostType = getContext('post')
+	const socket = io()
+	let preview = ''
 
-	async function showPreview(postMarkdown) {
-		await fetch('/api/preview', {
-			method: 'post',
-			headers: { accept: 'application/json' },
-			body: JSON.stringify(postMarkdown)
-		})
-		const result = await fetch('/api/preview')
-		const data = await result.json()
-		return data
+	$: {
+		// send message to server
+		socket.emit('updatePreview', $post.markdown)
+		// receive message from server
+		socket.on('previewUpdate', (html) => (preview = html))
 	}
 </script>
 
 {#if $post.preview}
 	<section class="preview">
 		<div class="prose">
-			{#await showPreview($post.markdown)}
-				<p>Processing...</p>
-			{:then data}
-				{@html data.content.content}
-			{:catch error}
-				<p>{error.message}</p>
-			{/await}
+			{@html preview}
 		</div>
 	</section>
 {/if}
