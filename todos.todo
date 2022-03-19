@@ -28,7 +28,7 @@ Markdown:
     ☐ Able to copy code
     ☐ Image dimensions
   Code highlight:
-    ✔ Shiki-Twoslash (themes, line highlight and numbers) @done
+    ✔ Prism (themes, line highlight and numbers) @done
   Plugins:
     ✔ remark-shiki-twoslash @done
     ✔ remark-gfm @done
@@ -37,6 +37,8 @@ Markdown:
     ✔ remark-smartypants @done
     ✔ remark-toc @done
     ✔ remark-unwrap-images @done
+    ✔ rehype-prism-plus @done
+    ✔ rehype-code-titles @done
 
 Site:
   ☐ A11Y
