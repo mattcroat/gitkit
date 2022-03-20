@@ -3,8 +3,9 @@
 	import { io } from 'socket.io-client'
 	import type { EditorPostType } from '$root/types'
 
-	const post: EditorPostType = getContext('post')
 	const socket = io()
+	const post: EditorPostType = getContext('post')
+
 	let preview = ''
 
 	$: {
