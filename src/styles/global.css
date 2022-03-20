@@ -24,6 +24,102 @@
 	--spacing-32: 3.2rem;
 }
 
+[color-scheme='🌙 Dusk'] {
+	--color-highlight: hsl(38 93% 76%);
+	--color-muted: hsl(213 20% 69%);
+	--color-primary: hsl(220 25% 13%);
+	--color-secondary: hsl(217 23% 22%);
+	--color-body: hsl(211 25% 83%);
+	--color-selection: var(--highlight);
+	--color-selection-text: hsl(14 60% 24%);
+	--color-separator: hsl(216 19% 26%);
+	--color-card-title: hsl(0 0% 98%);
+	--color-code: hsl(0 0% 98%);
+	--color-pre: hsl(218 26% 16%);
+	--color-code-title: hsl(0 0% 98%);
+	--color-code-border: hsl(218 26% 20%);
+	--color-code-line-highlight: hsl(218 26% 20%);
+	--color-code-line-number: hsl(218 26% 40%);
+	--color-token-1: hsl(211 96% 78%);
+	--color-token-2: var(--highlight);
+	--color-token-3: hsl(0 93% 81%);
+	--color-token-4: hsl(218 26% 80%);
+	--color-token-5: hsl(0 93% 81%);
+	--color-token-6: hsl(217 10% 64%);
+}
+
+[color-scheme='☀️ Light'] {
+	--color-highlight: hsl(210 60% 42%);
+	--color-muted: hsl(218 16% 34%);
+	--color-primary: hsl(0 0% 100%);
+	--color-secondary: hsl(0 0% 98%);
+	--color-body: hsl(218 16% 34%);
+	--color-selection: var(--highlight);
+	--color-selection-text: hsl(0 0% 100%);
+	--color-separator: hsl(220 13% 91%);
+	--color-card-title: hsl(0 0% 20%);
+	--color-code: hsl(0 0% 10%);
+	--color-pre: hsl(0 0% 98%);
+	--color-code-title: hsl(0 0% 10%);
+	--color-code-border: hsl(0 0% 94%);
+	--color-code-line-highlight: hsl(0 0% 94%);
+	--color-code-line-number: hsl(0 0% 80%);
+	--color-token-1: hsl(23 75% 53%);
+	--color-token-2: var(--highlight);
+	--color-token-3: hsl(8 80% 61%);
+	--color-token-4: hsl(0 0% 40%);
+	--color-token-5: hsl(8 80% 61%);
+	--color-token-6: hsl(217 10% 64%);
+}
+
+[color-scheme='🐺 Night Howl'] {
+	--color-highlight: hsl(207 100% 94%);
+	--color-muted: hsl(200 40% 72%);
+	--color-primary: hsl(206 50% 11%);
+	--color-secondary: hsl(206 51% 14%);
+	--color-body: hsl(200 40% 72%);
+	--color-selection: var(--highlight);
+	--color-selection-text: hsl(206 50% 11%);
+	--color-separator: hsl(207 50% 17%);
+	--color-card-title: hsl(0 0% 98%);
+	--color-code: hsl(0 0% 98%);
+	--color-pre: hsl(206 50% 14%);
+	--color-code-title: hsl(0 0% 98%);
+	--color-code-border: hsl(206 50% 18%);
+	--color-code-line-highlight: hsl(206 50% 20%);
+	--color-code-line-number: hsl(206 50% 40%);
+	--color-token-1: hsl(180 100% 43%);
+	--color-token-2: hsl(197 100% 49%);
+	--color-token-3: hsl(358 79% 69%);
+	--color-token-4: hsl(206 50% 98%);
+	--color-token-5: hsl(111 65% 71%);
+	--color-token-6: hsl(217 10% 64%);
+}
+
+[color-scheme='🧠 Night Mind'] {
+	--color-highlight: hsl(9 100% 84%);
+	--color-muted: hsl(265 28% 77%);
+	--color-primary: hsl(264 16% 12%);
+	--color-secondary: hsl(256 14% 14%);
+	--color-body: hsl(0 0% 100%);
+	--color-selection: var(--highlight);
+	--color-selection-text: hsl(206 50% 11%);
+	--color-separator: hsl(265 15% 17%);
+	--color-card-title: hsl(0 0% 98%);
+	--color-code: hsl(0 0% 98%);
+	--color-pre: hsl(256 14% 14%);
+	--color-code-title: hsl(0 0% 98%);
+	--color-code-border: hsl(256 14% 18%);
+	--color-code-line-highlight: hsl(256 14% 24%);
+	--color-code-line-number: hsl(256 14% 40%);
+	--color-token-1: hsl(238 80% 80%);
+	--color-token-2: hsl(205 82% 70%);
+	--color-token-3: hsl(358 79% 68%);
+	--color-token-4: hsl(256 14% 98%);
+	--color-token-5: hsl(102 68% 67%);
+	--color-token-6: hsl(217 10% 64%);
+}
+
 html {
 	font-size: 62.5%;
 }
@@ -120,7 +216,7 @@ button {
 	background: black;
 	border-radius: 1rem;
 }
-
+/* 
 .prose code {
 	counter-reset: step;
 	counter-increment: step 0;
@@ -134,13 +230,107 @@ button {
 	counter-increment: step;
 	color: hsl(198 13% 52% / 40%);
 	text-align: right;
-}
+} */
 
-.prose .code-title {
+/* .prose .code-title {
 	padding: 1rem;
 	color: gray;
 }
 
 .prose .language-id {
 	display: none;
+} */
+
+.prose code[class*='language-'],
+.prose pre[class*='language-'] {
+	/* @apply p-0 leading-relaxed whitespace-pre bg-transparent text-code; */
+	tab-size: 2;
+}
+
+/* .prose .rehype-code-title {
+	@apply py-4 pl-6 text-lg border-b code-title bg-pre rounded-tl-md rounded-tr-md lg:-mx-8;
+} */
+
+.prose .code-highlight {
+	width: 100%;
+	float: left;
+}
+
+.prose .code-line {
+	display: block;
+	padding-right: 16px;
+	padding-left: 16px;
+	margin-right: -16px;
+	margin-left: -16px;
+}
+
+.prose .highlight-line {
+	margin-right: -16px;
+	margin-left: -16px;
+	background-color: var(--color-code-line-highlight);
+}
+
+.prose .line-number::before {
+	content: attr(line);
+	display: inline-block;
+	width: 1rem;
+	margin-left: -8px;
+	margin-right: 16px;
+	text-align: right;
+	color: var(--color-code-line-number);
+}
+
+.prose .token.comment,
+.prose .token.prolog,
+.prose .token.doctype,
+.prose .token.cdata {
+	color: var(--color-token-6);
+}
+
+.prose .token.punctuation {
+	color: var(--color-token-4);
+}
+
+.prose .token.property,
+.prose .token.tag,
+.prose .token.boolean,
+.prose .token.number,
+.prose .token.constant,
+.prose .token.symbol,
+.prose .token.deleted {
+	color: var(--color-token-3);
+}
+
+.prose .token.selector,
+.prose .token.attr-name,
+.prose .token.string,
+.prose .token.char,
+.prose .token.builtin,
+.prose .token.inserted {
+	color: var(--color-token-5);
+}
+
+.prose .token.operator,
+.prose .token.entity,
+.prose .token.url,
+.prose .language-css .token.string,
+.prose .style .token.string {
+	color: var(--color-token-3);
+}
+
+.prose .token.atrule,
+.prose .token.attr-value,
+.prose .token.keyword {
+	color: var(--color-token-2);
+}
+
+.prose .token.function,
+.prose .token.class-name {
+	color: var(--color-token-1);
+}
+
+.prose .token.regex,
+.prose .token.important,
+.prose .token.variable {
+	color: var(--color-highlight);
 }
