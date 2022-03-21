@@ -9,18 +9,18 @@ Posts:
   ✔ Add post @done
   ✔ Remove post @done
   ✔ Edit post @done
-  ☐ Draft
+  ✔ Draft @done
   ☐ Categories
   ☐ Caching
-  ☐ Optimistic UI
 
 Editor:
-  ✔ Show content @done
-  ✔ Preview @done
-  ✔ Able to edit post @done
-  ☐ Publish post from draft branch
-  ☐ Autosave to branch
-  ☐ Toast notifications
+  CRUD:
+    ✔ Show content @done
+    ✔ Preview @done
+    ✔ Able to edit post @done
+    ✔ Publish post from draft branch @done
+  Wish:
+    ☐ Autosave
 
 Markdown:
   General:
@@ -41,18 +41,23 @@ Markdown:
     ✔ rehype-code-titles @done
 
 Site:
-  ☐ A11Y
-  ☐ SEO
-  ☐ Theming
-  ☐ Page transitions
-  ☐ Newsletter
-  ☐ RSS feed
-  ☐ Sitemap
-  ☐ Analytics
-  ☐ Uses page
-
-Test:
-  ☐ Posts
-  ☐ Theming
-  ☐ Newsletter
-  
+  Features:
+    ☐ A11Y
+    ☐ SEO
+    ☐ Theming
+    ☐ Newsletter
+    ☐ RSS feed
+    ☐ Sitemap
+    ☐ Analytics
+    ☐ Uses page
+  Polish:
+    ☐ Optimistic UI
+    ☐ Error handling
+    ☐ Toast notifications
+    ☐ Transitions
+  Tests:
+    ☐ A11Y
+    ☐ Posts
+    ☐ Editor
+    ☐ Theming
+    ☐ Newsletter
