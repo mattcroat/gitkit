@@ -5,9 +5,9 @@ import { createPost } from '$root/lib/posts'
 export const post: RequestHandler = async ({ request }) => {
 	const form = await request.formData()
 	const slug = String(form.get('slug'))
-	const content = String(form.get('content'))
+	const markdown = String(form.get('markdown'))
 
-	await createPost(slug, content)
+	await createPost(slug, markdown, { draft: true })
 
 	return {
 		status: 303,

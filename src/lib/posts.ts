@@ -29,8 +29,12 @@ async function getPostSHA(slug: string): Promise<string> {
 	return (await response.json()).sha
 }
 
-async function getPostFrontMatter(slug: string) {
-	const postUrl = `${postsUrl}/${slug}.md`
+async function getFrontMatter(
+	slug: string,
+	{ draft }: { draft?: boolean } = {}
+) {
+	const params = draft ? '?ref=draft' : ''
+	const postUrl = `${postsUrl}/${slug}.md${params}`
 
 	const response = await fetch(postUrl, {
 		headers: {
@@ -62,7 +66,7 @@ export async function getPosts(): Promise<PostItemType[]> {
 
 	let posts = []
 	for (const postSlug of slugs) {
-		const { slug, title } = await getPostFrontMatter(postSlug)
+		const { slug, title } = await getFrontMatter(postSlug)
 		posts = [...posts, { slug, title }]
 	}
 
@@ -93,16 +97,23 @@ export async function getPost(slug: string): Promise<PostType> {
 	return { content, frontmatter, postMarkdown }
 }
 
-export async function createPost(slug: string, content: string): Promise<void> {
+export async function createPost(
+	slug: string,
+	content: string,
+	{ draft }: { draft?: boolean } = {}
+): Promise<void> {
 	if (!slug) {
 		throw new Error(`You have to specify a slug. 🐌`)
 	}
 
+	const params = draft ? '?ref=draft' : ''
+	const branch = draft ? 'draft' : 'main'
+
 	// check if post already exists
-	const post = await fetch(`${postsUrl}/${slug}.md`, { headers })
+	const post = await fetch(`${postsUrl}/${slug}.md${params}`, { headers })
 
 	if (post.status === 200) {
-		throw new Error(`Post with a slug of "${slug}" already exists. 🤷`)
+		throw new Error(`${slug} already exists. 🤷`)
 	}
 
 	const createPost = await fetch(`${postsUrl}/${slug}.md`, {
@@ -111,12 +122,13 @@ export async function createPost(slug: string, content: string): Promise<void> {
 		body: JSON.stringify({
 			message: 'bot: Add post 🤖',
 			// Base64 encoding is required
-			content: Buffer.from(content).toString('base64')
+			content: Buffer.from(content).toString('base64'),
+			branch
 		})
 	})
 
 	if (createPost.status !== 201) {
-		throw new Error(`Something went wrong creating the post.`)
+		throw new Error(`Something went wrong creating ${slug}`)
 	}
 }
 

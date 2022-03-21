@@ -1,7 +1,5 @@
 <script lang="ts">
-	import CreatePost from '$root/components/create/post.svelte'
+	import Draft from '$root/components/create/index.svelte'
 </script>
 
-<h1>Add Post</h1>
-
-<CreatePost />
+<Draft />

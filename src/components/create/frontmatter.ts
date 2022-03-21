@@ -14,9 +14,9 @@ const date = getDate()
 
 const frontmatter = `
 	---
-	title: Title
+	title: Untitled
 	description: Description
-	slug: 'slug-url'
+	slug: 'slug'
 	published: '${date}'
 	category: 'category'
 	image: 'social-image.webp'
