@@ -20,8 +20,12 @@ export async function getRateLimit(): Promise<RateAPIResponseType> {
 	return resources.core
 }
 
-async function getPostSHA(slug: string): Promise<string> {
-	const response = await fetch(`${postsUrl}/${slug}.md`, { headers })
+async function getPostSHA(
+	slug: string,
+	{ draft }: { draft?: boolean } = {}
+): Promise<string> {
+	const params = draft ? '?ref=draft' : ''
+	const response = await fetch(`${postsUrl}/${slug}.md${params}`, { headers })
 
 	if (response.status !== 200) {
 		throw new Error(`Could not find ${slug}. 🤷`)
@@ -183,7 +187,11 @@ export async function removePost(slug: string): Promise<void> {
 	}
 }
 
-export async function editPost(slug: string, content: string): Promise<void> {
+export async function editPost(
+	slug: string,
+	content: string,
+	{ draft }: { draft?: boolean } = {}
+): Promise<void> {
 	if (!slug || !content) {
 		throw new Error(`You have to specify the slug and content. 🤷`)
 	}
@@ -195,7 +203,9 @@ export async function editPost(slug: string, content: string): Promise<void> {
 			message: 'bot: Update post 🤖',
 			// Base64 encoding is required
 			content: Buffer.from(content).toString('base64'),
-			sha: await getPostSHA(slug)
+			// 🙃
+			sha: await getPostSHA(slug, { draft }),
+			branch: draft ? 'draft' : 'main'
 		})
 	})
 

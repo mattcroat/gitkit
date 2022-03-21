@@ -1,12 +1,15 @@
 <script lang="ts">
+	import { page } from '$app/stores'
 	import { getContext } from 'svelte'
 
 	import { enhance } from '$root/lib/form'
-	import { fileUrl } from '$root/lib/config'
+	import { draftFileUrl, fileUrl } from '$root/lib/config'
 	import type { EditorPostType } from '$root/types'
 
 	const post: EditorPostType = getContext('post')
-	const viewFileUrl = `${fileUrl}/${$post.slug}.md`
+	const draft = $page.url.searchParams.has('draft')
+	const url = draft ? draftFileUrl : fileUrl
+	const viewUrl = `${url}/${$post.slug}.md`
 </script>
 
 <div class="toolbar">
@@ -27,12 +30,24 @@
 			/>
 		</svg>
 	</a>
+
 	<span class="title">{$post.title}</span>
+
 	<form method="post" use:enhance>
+		<input type="hidden" name="save" />
 		<input type="hidden" name="markdown" value={$post.markdown} />
 		<button class="save" type="submit">💾 Save</button>
 	</form>
-	<a href={viewFileUrl}>👁️ View</a>
+
+	{#if draft}
+		<form method="post" use:enhance>
+			<input type="hidden" name="publish" />
+			<input type="hidden" name="markdown" value={$post.markdown} />
+			<button class="save" type="submit">📢 Publish</button>
+		</form>
+	{/if}
+
+	<a href={viewUrl}>👁️ View</a>
 </div>
 
 <style>

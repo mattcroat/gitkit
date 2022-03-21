@@ -1,6 +1,6 @@
 import type { RequestHandler } from '@sveltejs/kit'
 
-import { editPost, getPost } from '$root/lib/posts'
+import { createPost, editPost, getPost } from '$root/lib/posts'
 
 export const get: RequestHandler = async ({ params, url }) => {
 	const draft = url.searchParams.has('draft')
@@ -15,11 +15,30 @@ export const get: RequestHandler = async ({ params, url }) => {
 	}
 }
 
-export const post: RequestHandler = async ({ params, request }) => {
+export const post: RequestHandler = async ({ params, request, url }) => {
 	const form = await request.formData()
 	const markdown = String(form.get('markdown'))
+	const save = form.has('save')
+	const publish = form.has('publish')
+	const draft = url.searchParams.has('draft')
 
-	await editPost(params.slug, markdown)
+	const action = {
+		save: save && !draft,
+		saveDraft: save && draft,
+		publishDraft: draft && publish
+	}
+
+	if (action.save) {
+		await editPost(params.slug, markdown)
+	}
+
+	if (action.saveDraft) {
+		await editPost(params.slug, markdown, { draft: true })
+	}
+
+	if (action.publishDraft) {
+		await createPost(params.slug, markdown)
+	}
 
 	return {
 		status: 303,
