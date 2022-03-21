@@ -104,8 +104,12 @@ export async function getAllPosts(): Promise<{
 	return { published, drafts }
 }
 
-export async function getPost(slug: string): Promise<PostType> {
-	const postUrl = `${postsUrl}/${slug}.md`
+export async function getPost(
+	slug: string,
+	{ draft }: { draft?: boolean } = {}
+): Promise<PostType> {
+	const params = draft ? '?ref=draft' : ''
+	const postUrl = `${postsUrl}/${slug}.md${params}`
 
 	const response = await fetch(postUrl, {
 		headers: {

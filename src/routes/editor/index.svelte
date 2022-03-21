@@ -17,7 +17,7 @@
 		<ul>
 			{#each drafts as draft}
 				<li>
-					<a href="/editor/edit/{draft.slug}" sveltekit:prefetch>
+					<a href="/editor/edit/{draft.slug}?draft=true" sveltekit:prefetch>
 						{draft.title}
 					</a>
 					<form action="/editor?_method=delete" method="post" use:enhance>

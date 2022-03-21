@@ -2,8 +2,9 @@ import type { RequestHandler } from '@sveltejs/kit'
 
 import { editPost, getPost } from '$root/lib/posts'
 
-export const get: RequestHandler = async ({ params }) => {
-	const { frontmatter, postMarkdown } = await getPost(params.slug)
+export const get: RequestHandler = async ({ params, url }) => {
+	const draft = url.searchParams.has('draft')
+	const { frontmatter, postMarkdown } = await getPost(params.slug, { draft })
 
 	return {
 		body: {
