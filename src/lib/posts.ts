@@ -1,6 +1,7 @@
 import { markdownToHTML, frontMatter } from './markdown'
 import { postsUrl } from './config'
 import type {
+	FrontMatterType,
 	GitHubAPIResponseType,
 	PostItemType,
 	PostType,
@@ -32,7 +33,7 @@ async function getPostSHA(slug: string): Promise<string> {
 async function getFrontMatter(
 	slug: string,
 	{ draft }: { draft?: boolean } = {}
-) {
+): Promise<FrontMatterType> {
 	const params = draft ? '?ref=draft' : ''
 	const postUrl = `${postsUrl}/${slug}.md${params}`
 
@@ -74,6 +75,33 @@ export async function getPosts(): Promise<PostItemType[]> {
 	// console.log(response.headers.get('etag'))
 
 	return posts
+}
+
+export async function getDrafts(): Promise<PostItemType[]> {
+	const response = await fetch(`${postsUrl}?ref=draft`, { headers })
+
+	if (!response.ok) {
+		throw new Error('Could not fetch posts. 💩')
+	}
+
+	const postsData: GitHubAPIResponseType[] = await response.json()
+	const slugs = postsData.map((post) => post.name.replace('.md', ''))
+
+	let posts = []
+	for (const postSlug of slugs) {
+		const { slug, title } = await getFrontMatter(postSlug, { draft: true })
+		posts = [...posts, { slug, title }]
+	}
+
+	return posts
+}
+
+export async function getAllPosts(): Promise<{
+	published: PostItemType[]
+	drafts: PostItemType[]
+}> {
+	const [published, drafts] = await Promise.all([getPosts(), getDrafts()])
+	return { published, drafts }
 }
 
 export async function getPost(slug: string): Promise<PostType> {

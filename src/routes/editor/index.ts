@@ -1,15 +1,15 @@
 import type { RequestHandler } from '@sveltejs/kit'
 
-import { getPosts, removePost } from '$root/lib/posts'
+import { getAllPosts, removePost } from '$root/lib/posts'
 
 export const get: RequestHandler = async () => {
-	const posts = await getPosts()
+	const { drafts, published } = await getAllPosts()
 
 	return {
 		headers: {
 			'Cache-Control': `max-age=3600, s-maxage=60`
 		},
-		body: { posts }
+		body: { drafts, published }
 	}
 }
 
