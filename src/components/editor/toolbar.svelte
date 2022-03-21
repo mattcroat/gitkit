@@ -40,7 +40,7 @@
 	</form>
 
 	{#if draft}
-		<form method="post" use:enhance>
+		<form method="post" use:enhance={{ redirect: `/editor` }}>
 			<input type="hidden" name="publish" />
 			<input type="hidden" name="markdown" value={$post.markdown} />
 			<button class="save" type="submit">📢 Publish</button>
