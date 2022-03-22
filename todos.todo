@@ -20,6 +20,7 @@ Editor:
     ✔ Able to edit post @done
     ✔ Publish post from draft branch @done
   Wish:
+    ☐ Preload editor
     ☐ Autosave
 
 Markdown:
