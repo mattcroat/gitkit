@@ -12,6 +12,7 @@
 	let editor: monaco.editor.IStandaloneCodeEditor
 
 	const post: EditorPostType = getContext('post')
+	let loading = true
 
 	onMount(async () => {
 		// @ts-ignore
@@ -59,6 +60,8 @@
 			renderLineHighlight: 'none'
 		})
 
+		loading = false
+
 		editor.onDidChangeModelContent(() => {
 			$post.markdown = editor.getValue()
 		})
@@ -69,4 +72,21 @@
 	})
 </script>
 
-<div bind:this={editorEl} class="editor" />
+{#if loading}
+	<span class="placeholder">✍️ Loading...</span>
+{/if}
+
+<div bind:this={editorEl} class="editor" class:loading />
+
+<style>
+	.placeholder {
+		display: grid;
+		place-content: center;
+		font-size: 2rem;
+		background-color: hsl(0 0% 12%);
+	}
+
+	.loading {
+		display: none;
+	}
+</style>
