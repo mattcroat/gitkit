@@ -2,6 +2,8 @@ export const api = 'https://api.github.com'
 export const owner = 'mattcroat'
 export const repo = 'gitkit'
 export const path = 'posts'
+export const mainBranch = 'main'
+export const draftBranch = 'draft'
 
 // https://api.github.com/repos/mattcroat/gitkit/contents/posts/post.md
 export const postsUrl = `${api}/repos/${owner}/${repo}/contents/${path}`
