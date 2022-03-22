@@ -49,10 +49,14 @@ export const enhance: Enhance = (
 	async function handleSubmit(event: Event) {
 		event.preventDefault()
 
-		const token = (currentToken = {})
+		const token = {}
+		currentToken = token
+
 		const data = new FormData(form)
 
-		if (pending) pending({ data, form })
+		if (pending) {
+			pending({ data, form })
+		}
 
 		try {
 			const response = await fetch(form.action, {
@@ -63,24 +67,31 @@ export const enhance: Enhance = (
 				body: data
 			})
 
-			if (token !== currentToken) return
+			if (token !== currentToken) {
+				return
+			}
+
+			if (!response.ok) {
+				if (error) {
+					error({ data, form, error: null, response })
+				} else {
+					console.error(await response.text())
+				}
+			}
 
 			if (response.ok) {
-				if (result) result({ data, form, response })
+				if (result) {
+					result({ data, form, response })
+				}
 
 				if (redirect) {
-					goto(redirect)
-					return
+					return goto(redirect)
 				}
 
 				const url = new URL(form.action)
 				url.search = ''
 				url.hash = ''
 				invalidate(url.href)
-			} else if (error) {
-				error({ data, form, error: null, response })
-			} else {
-				console.error(await response.text())
 			}
 		} catch (error) {
 			if (error) {
