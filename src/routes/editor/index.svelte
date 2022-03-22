@@ -21,6 +21,7 @@
 						{draft.title}
 					</a>
 					<form action="/editor?_method=delete" method="post" use:enhance>
+						<input type="hidden" name="draft" />
 						<input type="hidden" name="slug" value={draft.slug} />
 						<button type="submit">Remove</button>
 					</form>

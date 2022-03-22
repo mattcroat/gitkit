@@ -16,8 +16,9 @@ export const get: RequestHandler = async () => {
 export const del: RequestHandler = async ({ request }) => {
 	const form = await request.formData()
 	const slug = String(form.get('slug'))
+	const draft = form.has('draft')
 
-	await removePost(slug)
+	draft ? await removePost(slug, { draft: true }) : await removePost(slug)
 
 	return {
 		status: 303,
