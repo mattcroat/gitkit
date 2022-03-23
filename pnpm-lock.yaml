@@ -3,6 +3,7 @@ lockfileVersion: 5.3
 specifiers:
   '@playwright/test': ^1.19.1
   '@rgossiaux/svelte-headlessui': ^1.0.0-beta.12
+  '@rgossiaux/svelte-heroicons': ^0.1.2
   '@sveltejs/adapter-auto': next
   '@sveltejs/kit': next
   '@typescript-eslint/eslint-plugin': ^5.10.1
@@ -60,6 +61,7 @@ dependencies:
 
 devDependencies:
   '@playwright/test': 1.19.2
+  '@rgossiaux/svelte-heroicons': 0.1.2_svelte@3.46.4
   '@sveltejs/adapter-auto': 1.0.0-next.33
   '@sveltejs/kit': 1.0.0-next.302_svelte@3.46.4
   '@typescript-eslint/eslint-plugin': 5.13.0_d80048fb2dc47ff898dcd38041f9ffe2
@@ -752,6 +754,14 @@ packages:
     dependencies:
       svelte: 3.46.4
     dev: false
+
+  /@rgossiaux/svelte-heroicons/0.1.2_svelte@3.46.4:
+    resolution: {integrity: sha512-c5Ep1QDvBo9HD/P0AxbXItDbn6x77fldCjjL0aBjNseUntV4fkdHkBde1IaLr8i0kmrhTSovjkIen8W83jUPzg==}
+    peerDependencies:
+      svelte: ^3.44.0
+    dependencies:
+      svelte: 3.46.4
+    dev: true
 
   /@rollup/pluginutils/4.1.2:
     resolution: {integrity: sha512-ROn4qvkxP9SyPeHaf7uQC/GPFY6L/OWy9+bd9AwcjOAWQwxRscoEyAUD8qCY5o5iL4jqQwoLk2kaTKJPb/HwzQ==}
