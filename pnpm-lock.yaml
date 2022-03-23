@@ -2,6 +2,7 @@ lockfileVersion: 5.3
 
 specifiers:
   '@playwright/test': ^1.19.1
+  '@rgossiaux/svelte-headlessui': ^1.0.0-beta.12
   '@sveltejs/adapter-auto': next
   '@sveltejs/kit': next
   '@typescript-eslint/eslint-plugin': ^5.10.1
@@ -37,6 +38,7 @@ specifiers:
   unified: ^10.1.2
 
 dependencies:
+  '@rgossiaux/svelte-headlessui': 1.0.0-beta.12_svelte@3.46.4
   env-cmd: 10.1.0
   monaco-editor: 0.33.0
   rehype-code-titles: 1.0.3
@@ -742,6 +744,14 @@ packages:
       - supports-color
       - utf-8-validate
     dev: true
+
+  /@rgossiaux/svelte-headlessui/1.0.0-beta.12_svelte@3.46.4:
+    resolution: {integrity: sha512-UgLV9PwlwkJYObYSzxm5kh5HbyEps3oMbihL1BY7CpZ26j0q6O6WaG4d95eiMilhzyHfRYRm/VLyNPJISBFqAA==}
+    peerDependencies:
+      svelte: ^3.44.0
+    dependencies:
+      svelte: 3.46.4
+    dev: false
 
   /@rollup/pluginutils/4.1.2:
     resolution: {integrity: sha512-ROn4qvkxP9SyPeHaf7uQC/GPFY6L/OWy9+bd9AwcjOAWQwxRscoEyAUD8qCY5o5iL4jqQwoLk2kaTKJPb/HwzQ==}
