@@ -1,6 +1,5 @@
 {
-	"name": "github-cms",
-	"version": "0.0.1",
+	"name": "gitkit",
 	"scripts": {
 		"dev": "env-cmd svelte-kit dev",
 		"build": "svelte-kit build",
