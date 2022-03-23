@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { getContext } from 'svelte'
+	import { ArrowLeftIcon, SaveIcon } from '@rgossiaux/svelte-heroicons/outline'
 
 	import { enhance } from '$root/lib/form'
 	import type { EditorPostType } from '$root/types'
@@ -12,27 +13,16 @@
 
 <div class="toolbar">
 	<a class="back" href="/editor" sveltekit:prefetch>
-		<svg
-			width="24"
-			height="24"
-			xmlns="http://www.w3.org/2000/svg"
-			fill="none"
-			viewBox="0 0 24 24"
-			stroke="currentColor"
-			stroke-width="2"
-		>
-			<path
-				stroke-linecap="round"
-				stroke-linejoin="round"
-				d="M10 19l-7-7m0 0l7-7m-7 7h18"
-			/>
-		</svg>
+		<ArrowLeftIcon width="24" height="24" />
 	</a>
 	<span class="title">{title}</span>
 	<form method="post" use:enhance={{ redirect: '/editor' }}>
 		<input type="hidden" name="slug" value={slug} />
 		<input type="hidden" name="markdown" value={$post.markdown} />
-		<button class="save" type="submit">💾 Draft</button>
+		<button class="save" type="submit">
+			<SaveIcon width="24" height="24" />
+			<span>Draft</span>
+		</button>
 	</form>
 </div>
 
@@ -40,7 +30,7 @@
 	.toolbar {
 		display: flex;
 		align-items: center;
-		gap: 1rem;
+		gap: 0.4rem;
 		background-color: hsl(0 0% 12%);
 		border-bottom: 1px solid hsl(0 0% 20%);
 	}
@@ -60,14 +50,26 @@
 		border-right: 1px solid hsl(0 0% 20%);
 	}
 
+	.save {
+		display: flex;
+		gap: 0.4rem;
+		align-items: center;
+		font-size: 16px;
+	}
+
+	.save span {
+		padding-top: 0.2rem;
+	}
+
 	a,
 	button {
-		color: hsl(0 0% 40%);
-		text-decoration: none;
+		font-weight: 400;
+		color: hsl(0 0% 60%);
 	}
 
 	button:hover,
 	a:hover {
 		color: tomato;
+		text-decoration: none;
 	}
 </style>

@@ -1,6 +1,12 @@
 <script lang="ts">
 	import { page } from '$app/stores'
 	import { getContext } from 'svelte'
+	import {
+		ArrowLeftIcon,
+		EyeIcon,
+		SaveIcon,
+		SpeakerphoneIcon
+	} from '@rgossiaux/svelte-heroicons/outline'
 
 	import { enhance } from '$root/lib/form'
 	import { draftFileUrl, fileUrl } from '$root/lib/config'
@@ -14,21 +20,7 @@
 
 <div class="toolbar">
 	<a class="back" href="/editor" sveltekit:prefetch>
-		<svg
-			width="24"
-			height="24"
-			xmlns="http://www.w3.org/2000/svg"
-			fill="none"
-			viewBox="0 0 24 24"
-			stroke="currentColor"
-			stroke-width="2"
-		>
-			<path
-				stroke-linecap="round"
-				stroke-linejoin="round"
-				d="M10 19l-7-7m0 0l7-7m-7 7h18"
-			/>
-		</svg>
+		<ArrowLeftIcon width="24" height="24" />
 	</a>
 
 	<span class="title">{$post.title}</span>
@@ -36,25 +28,34 @@
 	<form method="post" use:enhance>
 		<input type="hidden" name="save" />
 		<input type="hidden" name="markdown" value={$post.markdown} />
-		<button class="save" type="submit">💾 Save</button>
+		<button class="save" type="submit">
+			<SaveIcon width="24" height="24" />
+			<span>Save</span>
+		</button>
 	</form>
 
 	{#if draft}
 		<form method="post" use:enhance={{ redirect: `/editor` }}>
 			<input type="hidden" name="publish" />
 			<input type="hidden" name="markdown" value={$post.markdown} />
-			<button class="save" type="submit">📢 Publish</button>
+			<button class="save" type="submit">
+				<SpeakerphoneIcon width="24" height="24" />
+				<span>Publish</span>
+			</button>
 		</form>
 	{/if}
 
-	<a href={viewUrl}>👁️ View</a>
+	<a class="view" href={viewUrl}>
+		<EyeIcon width="24" height="24" />
+		<span>View</span>
+	</a>
 </div>
 
 <style>
 	.toolbar {
 		display: flex;
 		align-items: center;
-		gap: 1rem;
+		gap: 0.4rem;
 		background-color: hsl(0 0% 12%);
 		border-bottom: 1px solid hsl(0 0% 20%);
 	}
@@ -74,14 +75,28 @@
 		border-right: 1px solid hsl(0 0% 20%);
 	}
 
+	.save,
+	.view {
+		display: flex;
+		gap: 0.4rem;
+		align-items: center;
+		font-size: 16px;
+	}
+
+	.save span,
+	.view span {
+		padding-top: 0.2rem;
+	}
+
 	a,
 	button {
-		color: hsl(0 0% 40%);
-		text-decoration: none;
+		font-weight: 400;
+		color: hsl(0 0% 60%);
 	}
 
 	button:hover,
 	a:hover {
 		color: tomato;
+		text-decoration: none;
 	}
 </style>
