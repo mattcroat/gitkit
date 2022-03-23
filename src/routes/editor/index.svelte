@@ -9,7 +9,25 @@
 <main>
 	<section>
 		<h2>Create Post</h2>
-		<a href="/editor/create">+ Create Post</a>
+		<div class="create">
+			<a href="/editor/create">Create post</a>
+			<svg
+				width="24"
+				height="24"
+				xmlns="http://www.w3.org/2000/svg"
+				class="h-6 w-6"
+				fill="none"
+				viewBox="0 0 24 24"
+				stroke="currentColor"
+				stroke-width="2"
+			>
+				<path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+				/>
+			</svg>
+		</div>
 	</section>
 
 	<section>
@@ -23,7 +41,23 @@
 					<form action="/editor?_method=delete" method="post" use:enhance>
 						<input type="hidden" name="draft" />
 						<input type="hidden" name="slug" value={draft.slug} />
-						<button type="submit">Remove</button>
+						<button type="submit">
+							<svg
+								width="24"
+								height="24"
+								xmlns="http://www.w3.org/2000/svg"
+								fill="none"
+								viewBox="0 0 24 24"
+								stroke="currentColor"
+								stroke-width="2"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+								/>
+							</svg>
+						</button>
 					</form>
 				</li>
 			{/each}
@@ -38,7 +72,23 @@
 					<a href="/editor/edit/{post.slug}" sveltekit:prefetch>{post.title}</a>
 					<form action="/editor?_method=delete" method="post" use:enhance>
 						<input type="hidden" name="slug" value={post.slug} />
-						<button type="submit">Remove</button>
+						<button type="submit">
+							<svg
+								width="24"
+								height="24"
+								xmlns="http://www.w3.org/2000/svg"
+								fill="none"
+								viewBox="0 0 24 24"
+								stroke="currentColor"
+								stroke-width="2"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+								/>
+							</svg>
+						</button>
 					</form>
 				</li>
 			{/each}
@@ -53,8 +103,14 @@
 		padding: 2rem;
 	}
 
+	.create {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+	}
+
 	li {
 		display: flex;
-		gap: 2rem;
+		align-items: center;
 	}
 </style>
