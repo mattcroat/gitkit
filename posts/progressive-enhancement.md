@@ -5,7 +5,7 @@ slug: 'progressive-enhancement'
 published: '2022-1-1'
 ---
 
-```js title="example.js" {8-9}
+```js:example.js {8} showLineNumbers
 // Comment
 
 /*
@@ -17,15 +17,20 @@ function hello() {
 }
 ```
 
-```html
+```html:index.html {2-3} showLineNumbers
 <article>
   <h2>Heading</h2>
   <p>Paragraph</p>
 </article>
 ```
 
-```css
+```css:global.css {2} showLineNumbers
 body {
   color: hsl(220 20% 10%);
 }
+```
+
+```diff
+- console.log('Before')
++ console.log('After)
 ```
