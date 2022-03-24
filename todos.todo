@@ -12,6 +12,7 @@ Posts:
   ✔ Draft @done
   ☐ Categories
   ☐ Caching
+  ☐ Pagination
 
 Editor:
   CRUD:
@@ -45,7 +46,7 @@ Site:
   Features:
     ☐ A11Y
     ☐ SEO
-    ☐ Theming
+    ✔ Theming @done
     ☐ Newsletter
     ☐ RSS feed
     ☐ Sitemap
