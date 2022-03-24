@@ -160,6 +160,10 @@ img {
 	border-radius: 1rem;
 }
 
+svg {
+	display: block;
+}
+
 button {
 	padding: 1rem;
 	font-size: inherit;

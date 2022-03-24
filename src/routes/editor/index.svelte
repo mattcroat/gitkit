@@ -14,7 +14,7 @@
 <main>
 	<section>
 		<h2>Create Post</h2>
-		<div class="create">
+		<div class="create-post">
 			<a href="/editor/create">Create post</a>
 			<PlusCircleIcon width="24" height="24" />
 		</div>
@@ -22,9 +22,9 @@
 
 	<section>
 		<h2>Draft</h2>
-		<ul>
+		<ul class="posts">
 			{#each drafts as draft}
-				<li>
+				<li class="post">
 					<a href="/editor/edit/{draft.slug}?draft=true" sveltekit:prefetch>
 						{draft.title}
 					</a>
@@ -42,9 +42,9 @@
 
 	<section>
 		<h2>Published</h2>
-		<ul>
+		<ul class="posts">
 			{#each published as post}
-				<li>
+				<li class="post">
 					<a href="/editor/edit/{post.slug}" sveltekit:prefetch>{post.title}</a>
 					<form action="/editor?_method=delete" method="post" use:enhance>
 						<input type="hidden" name="slug" value={post.slug} />
@@ -79,14 +79,36 @@
 		padding: 2rem;
 	}
 
-	.create {
+	.create-post {
+		width: max-content;
 		display: flex;
+		justify-content: space-between;
 		align-items: center;
 		gap: 1rem;
+		padding: 2rem;
+		background-color: hsl(220 20% 20%);
+		border-radius: 1rem;
+		box-shadow: 0px 0px 4px hsl(0 0% 0% / 40%);
 	}
 
-	li {
+	.posts {
+		display: grid;
+		gap: 1rem;
+		grid-template-columns: repeat(3, 1fr);
+	}
+
+	.post {
 		display: flex;
+		justify-content: space-between;
 		align-items: center;
+		padding: 2rem;
+		background-color: hsl(220 20% 20%);
+		border-radius: 1rem;
+		box-shadow: 0px 0px 4px hsl(220 20% 4% / 40%);
+		transition: box-shadow 0.3s;
+	}
+
+	.post:hover {
+		box-shadow: 0px 0px 10px hsl(220 20% 4% / 80%);
 	}
 </style>
