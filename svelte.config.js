@@ -38,7 +38,7 @@ async function markdownToHTML(markdown) {
 			.use(toMarkdown)
 			.use(fromMarkdownToHtml)
 			.use(rehypeCodeTitles)
-			.use([rehypePrism, { showLineNumbers: true }])
+			.use(rehypePrism)
 			.use(toHtml)
 			.process(content)
 		const processedMarkdown = result.value

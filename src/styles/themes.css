@@ -22,7 +22,7 @@ html[class='daylight'] {
 	--color-token-6: hsl(217 10% 64%);
 }
 
-html[class='night-howl'] {
+html[class='nighthowl'] {
 	--color-highlight: hsl(207 100% 94%);
 	--color-code-line-highlight: hsl(206 50% 20%);
 	--color-code-line-number: hsl(206 50% 40%);
@@ -34,7 +34,7 @@ html[class='night-howl'] {
 	--color-token-6: hsl(217 10% 64%);
 }
 
-html[class='night-mind'] {
+html[class='nightmind'] {
 	--color-highlight: hsl(9 100% 84%);
 	--color-code-line-highlight: hsl(256 14% 24%);
 	--color-code-line-number: hsl(256 14% 40%);

@@ -10,9 +10,9 @@
 
 	const themes = {
 		night: { class: 'night', text: '🌛 Night' },
-		light: { class: 'light', text: '☀️ Daylight' },
-		howl: { class: 'howl', text: '🐺 Night Howl' },
-		mind: { class: 'mind', text: '🧠 Night Mind' }
+		daylight: { class: 'daylight', text: '☀️ Daylight' },
+		nighthowl: { class: 'nighthowl', text: '🐺 Night Howl' },
+		nightmind: { class: 'nightmind', text: '🧠 Night Mind' }
 	}
 
 	let selectedTheme = getTheme() ?? themes['night']

@@ -37,9 +37,3 @@
 .prose li > ul > li::before {
 	display: none;
 }
-
-.prose pre {
-	padding: 1rem;
-	background: black;
-	border-radius: 1rem;
-}

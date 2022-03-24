@@ -1,65 +1,55 @@
-/* 
+.prose pre {
+	padding: var(--spacing-16) 0;
+	background-color: hsl(220 20% 10%);
+	line-height: 1.8;
+	border-bottom-left-radius: var(--radius-1);
+	border-bottom-right-radius: var(--radius-1);
+}
+
 .prose code {
 	counter-reset: step;
 	counter-increment: step 0;
 }
 
-.prose code .line::before {
+.prose code[class*='language-'],
+.prose pre[class*='language-'] {
+	tab-size: 2;
+}
+
+.prose .rehype-code-title {
+	padding: var(--spacing-8) var(--spacing-16);
+	background-color: hsl(220 20% 10%);
+	border-top-left-radius: var(--radius-1);
+	border-top-right-radius: var(--radius-1);
+
+	/* workaround CSS grid spacing */
+	transform: translateY(46%);
+}
+
+.prose .line-number::before {
 	width: 1rem;
 	display: inline-block;
-	margin-right: 1.4rem;
+	margin-right: var(--spacing-16);
+	padding: 0 var(--spacing-16);
 	content: counter(step);
 	counter-increment: step;
 	color: hsl(198 13% 52% / 40%);
 	text-align: right;
-} */
-
-/* .prose .code-title {
-	padding: 1rem;
-	color: gray;
 }
 
-.prose .language-id {
-	display: none;
-} */
-
-.prose code[class*='language-'],
-.prose pre[class*='language-'] {
-	/* @apply p-0 leading-relaxed whitespace-pre bg-transparent text-code; */
-	tab-size: 2;
-}
-
-/* .prose .rehype-code-title {
-	@apply py-4 pl-6 text-lg border-b code-title bg-pre rounded-tl-md rounded-tr-md lg:-mx-8;
-} */
-
-.prose .code-highlight {
-	width: 100%;
-	float: left;
-}
-
-.prose .code-line {
+.prose .code-line.inserted {
 	display: block;
-	padding-right: 16px;
-	padding-left: 16px;
-	margin-right: -16px;
-	margin-left: -16px;
+	background-color: hsl(160 84% 39% / 20%);
+}
+
+.prose .code-line.deleted {
+	display: block;
+	background-color: hsl(0 84% 60% / 20%);
 }
 
 .prose .highlight-line {
-	margin-right: -16px;
-	margin-left: -16px;
+	display: block;
 	background-color: var(--color-code-line-highlight);
-}
-
-.prose .line-number::before {
-	content: attr(line);
-	display: inline-block;
-	width: 1rem;
-	margin-left: -8px;
-	margin-right: 16px;
-	text-align: right;
-	color: var(--color-code-line-number);
 }
 
 .prose .token.comment,
