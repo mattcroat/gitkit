@@ -26,7 +26,7 @@
 
 <style>
 	.preview {
-		padding: 1rem 2rem;
+		padding: 0 var(--spacing-20);
 		background-color: hsl(0 0% 12%);
 		overflow: auto;
 		scrollbar-width: thin;

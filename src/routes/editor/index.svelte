@@ -75,8 +75,8 @@
 <style>
 	main {
 		display: grid;
-		gap: 2rem;
-		padding: 2rem;
+		gap: var(--spacing-20);
+		padding: var(--spacing-20);
 	}
 
 	.create-post {
@@ -84,16 +84,16 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		gap: 1rem;
-		padding: 2rem;
+		gap: var(--spacing-16);
+		padding: var(--spacing-20);
 		background-color: hsl(220 20% 20%);
-		border-radius: 1rem;
+		border-radius: var(--radius-1);
 		box-shadow: 0px 0px 4px hsl(0 0% 0% / 40%);
 	}
 
 	.posts {
 		display: grid;
-		gap: 1rem;
+		gap: var(--spacing-16);
 		grid-template-columns: repeat(3, 1fr);
 	}
 
@@ -101,9 +101,9 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		padding: 2rem;
+		padding: var(--spacing-20);
 		background-color: hsl(220 20% 20%);
-		border-radius: 1rem;
+		border-radius: var(--radius-1);
 		box-shadow: 0px 0px 4px hsl(220 20% 4% / 40%);
 		transition: box-shadow 0.3s;
 	}

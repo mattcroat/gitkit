@@ -30,13 +30,13 @@
 	.toolbar {
 		display: flex;
 		align-items: center;
-		gap: 0.4rem;
+		gap: var(--spacing-16);
 		background-color: hsl(0 0% 12%);
 		border-bottom: 1px solid hsl(0 0% 20%);
 	}
 
 	.back {
-		margin-left: 2.4rem;
+		margin-left: var(--spacing-24);
 		display: flex;
 	}
 
@@ -44,17 +44,17 @@
 		height: 100%;
 		display: flex;
 		align-items: center;
-		padding: 0 2rem;
-		font-size: 2.4rem;
+		padding: 0 var(--spacing-20);
+		font-size: var(--spacing-24);
 		font-weight: 700;
 		border-right: 1px solid hsl(0 0% 20%);
 	}
 
 	.save {
 		display: flex;
-		gap: 0.4rem;
+		gap: var(--spacing-4);
 		align-items: center;
-		font-size: 16px;
+		font-size: var(--font-16);
 	}
 
 	.save span {

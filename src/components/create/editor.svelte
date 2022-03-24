@@ -82,8 +82,9 @@
 	.placeholder {
 		display: grid;
 		place-content: center;
-		font-size: 2rem;
+		font-size: var(--font-20);
 		background-color: hsl(0 0% 12%);
+		padding: var(--spacing-20);
 	}
 
 	.loading {

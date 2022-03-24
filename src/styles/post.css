@@ -1,0 +1,45 @@
+.prose {
+	max-width: 60ch;
+	display: grid;
+	gap: 2rem;
+}
+
+.prose h1 {
+	margin: 4rem 0;
+	font-size: 6rem;
+	line-height: 1;
+}
+
+.prose h2 {
+	font-size: 4rem;
+	margin-top: 2rem;
+}
+
+.prose h3 {
+	font-size: 2rem;
+	margin-top: 2rem;
+}
+
+.prose p {
+	line-height: 1.8;
+}
+
+.prose ul li::before {
+	content: '👉️';
+	padding-right: 10px;
+}
+
+.prose li > ul {
+	margin: 0;
+	padding-left: 1.6rem;
+}
+
+.prose li > ul > li::before {
+	display: none;
+}
+
+.prose pre {
+	padding: 1rem;
+	background: black;
+	border-radius: 1rem;
+}

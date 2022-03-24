@@ -24,7 +24,6 @@
 	}
 
 	.toggle :global(svg) {
-		display: block;
 		color: hsl(0 0% 40%);
 		transition: color 0.3s;
 	}

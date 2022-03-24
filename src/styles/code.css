@@ -1,0 +1,118 @@
+/* 
+.prose code {
+	counter-reset: step;
+	counter-increment: step 0;
+}
+
+.prose code .line::before {
+	width: 1rem;
+	display: inline-block;
+	margin-right: 1.4rem;
+	content: counter(step);
+	counter-increment: step;
+	color: hsl(198 13% 52% / 40%);
+	text-align: right;
+} */
+
+/* .prose .code-title {
+	padding: 1rem;
+	color: gray;
+}
+
+.prose .language-id {
+	display: none;
+} */
+
+.prose code[class*='language-'],
+.prose pre[class*='language-'] {
+	/* @apply p-0 leading-relaxed whitespace-pre bg-transparent text-code; */
+	tab-size: 2;
+}
+
+/* .prose .rehype-code-title {
+	@apply py-4 pl-6 text-lg border-b code-title bg-pre rounded-tl-md rounded-tr-md lg:-mx-8;
+} */
+
+.prose .code-highlight {
+	width: 100%;
+	float: left;
+}
+
+.prose .code-line {
+	display: block;
+	padding-right: 16px;
+	padding-left: 16px;
+	margin-right: -16px;
+	margin-left: -16px;
+}
+
+.prose .highlight-line {
+	margin-right: -16px;
+	margin-left: -16px;
+	background-color: var(--color-code-line-highlight);
+}
+
+.prose .line-number::before {
+	content: attr(line);
+	display: inline-block;
+	width: 1rem;
+	margin-left: -8px;
+	margin-right: 16px;
+	text-align: right;
+	color: var(--color-code-line-number);
+}
+
+.prose .token.comment,
+.prose .token.prolog,
+.prose .token.doctype,
+.prose .token.cdata {
+	color: var(--color-token-6);
+}
+
+.prose .token.punctuation {
+	color: var(--color-token-4);
+}
+
+.prose .token.property,
+.prose .token.tag,
+.prose .token.boolean,
+.prose .token.number,
+.prose .token.constant,
+.prose .token.symbol,
+.prose .token.deleted {
+	color: var(--color-token-3);
+}
+
+.prose .token.selector,
+.prose .token.attr-name,
+.prose .token.string,
+.prose .token.char,
+.prose .token.builtin,
+.prose .token.inserted {
+	color: var(--color-token-5);
+}
+
+.prose .token.operator,
+.prose .token.entity,
+.prose .token.url,
+.prose .language-css .token.string,
+.prose .style .token.string {
+	color: var(--color-token-3);
+}
+
+.prose .token.atrule,
+.prose .token.attr-value,
+.prose .token.keyword {
+	color: var(--color-token-2);
+}
+
+.prose .token.function,
+.prose .token.class-name {
+	color: var(--color-token-1);
+}
+
+.prose .token.regex,
+.prose .token.important,
+.prose .token.variable {
+	color: var(--color-highlight);
+}
