@@ -8,17 +8,58 @@
 		ListboxOptions
 	} from '@rgossiaux/svelte-headlessui'
 
-	const themes = [
-		{ id: 1, name: '🌛 Night' },
-		{ id: 2, name: '☀️ Daylight' },
-		{ id: 3, name: '🐺 Night Howl' },
-		{ id: 4, name: '🧠 Night Mind' }
-	]
+	const themes = {
+		night: { class: 'night', text: '🌛 Night' },
+		light: { class: 'light', text: '☀️ Daylight' },
+		howl: { class: 'howl', text: '🐺 Night Howl' },
+		mind: { class: 'mind', text: '🧠 Night Mind' }
+	}
 
-	let selectedTheme = themes[0]
+	let selectedTheme = getTheme() ?? themes['night']
+
+	function getTheme() {
+		if (typeof localStorage === 'undefined') return
+
+		const htmlElement = document.documentElement
+		const userTheme = localStorage.theme
+		const prefersDarkMode = window.matchMedia(
+			'prefers-color-scheme: dark'
+		).matches
+		const prefersLightMode = window.matchMedia(
+			'prefers-color-scheme: light'
+		).matches
+
+		// check if the user set a theme
+		if (userTheme) {
+			htmlElement.className = userTheme
+			return themes[userTheme]
+		}
+
+		// otherwise check for user preference
+		if (!userTheme && prefersDarkMode) {
+			htmlElement.className = 'night'
+			localStorage.theme = 'night'
+		}
+
+		if (!userTheme && prefersLightMode) {
+			htmlElement.className = 'light'
+			localStorage.theme = 'light'
+		}
+
+		// if nothing is set default to dark mode
+		if (!userTheme && !prefersDarkMode && !prefersLightMode) {
+			htmlElement.className = 'night'
+			localStorage.theme = 'night'
+		}
+
+		return themes[userTheme]
+	}
 
 	function handleChange(event: CustomEvent) {
-		selectedTheme = event.detail
+		selectedTheme = themes[event.detail.class]
+		const htmlElement = document.documentElement
+		htmlElement.className = selectedTheme.class
+		localStorage.theme = selectedTheme.class
 	}
 </script>
 
@@ -27,7 +68,7 @@
 		<ListboxLabel class="sr-only">Theme</ListboxLabel>
 
 		<ListboxButton class="button">
-			<span>{selectedTheme.name}</span>
+			<span>{selectedTheme.text}</span>
 			<span>
 				<svg
 					width="20"
@@ -50,10 +91,10 @@
 		{#if open}
 			<div transition:fade={{ duration: 100 }}>
 				<ListboxOptions class="options" static>
-					{#each themes as theme (theme.id)}
+					{#each Object.entries(themes) as [key, theme] (key)}
 						<ListboxOption value={theme} let:active let:selected>
 							<span class="option" class:active class:selected>
-								{theme.name}
+								{theme.text}
 							</span>
 						</ListboxOption>
 					{/each}
@@ -65,11 +106,12 @@
 
 <style>
 	.listbox {
-		max-width: 20ch;
+		--width: 184px;
 	}
 
 	.listbox :global(.button) {
-		width: 100%;
+		width: var(--width);
+		position: relative;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
@@ -87,6 +129,8 @@
 	}
 
 	.listbox :global(.options) {
+		width: var(--width);
+		position: absolute;
 		margin-top: 0.4rem;
 		background-color: hsl(220 20% 20%);
 		border-radius: 2rem;
