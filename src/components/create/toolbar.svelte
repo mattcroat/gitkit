@@ -1,8 +1,11 @@
 <script lang="ts">
 	import { getContext } from 'svelte'
+	import { goto } from '$app/navigation'
 	import { ArrowLeftIcon, SaveIcon } from '@rgossiaux/svelte-heroicons/outline'
+	import { SvelteToast } from '@zerodevx/svelte-toast'
 
 	import { enhance } from '$root/lib/form'
+	import { failure, success } from '$root/lib/toast'
 	import type { EditorPostType } from '$root/types'
 
 	const post: EditorPostType = getContext('post')
@@ -11,12 +14,27 @@
 	$: slug = $post.markdown.match(/slug: '(.*)'/)[1].trim()
 </script>
 
+<SvelteToast options={{ duration: 2000, intro: { y: -100 } }} />
+
 <div class="toolbar">
 	<a class="back" href="/editor" sveltekit:prefetch>
 		<ArrowLeftIcon width="24" height="24" />
 	</a>
 	<span class="title">{title}</span>
-	<form method="post" use:enhance={{ redirect: '/editor' }}>
+	<form
+		method="post"
+		use:enhance={{
+			error: async ({ response }) => {
+				const { error } = await response.json()
+				failure(error)
+			},
+			result: async () => {
+				success(`Saved "${title}"" as draft. 👍️`)
+				await new Promise((resolve) => setTimeout(resolve, 2000))
+				goto('/editor')
+			}
+		}}
+	>
 		<input type="hidden" name="slug" value={slug} />
 		<input type="hidden" name="markdown" value={$post.markdown} />
 		<button class="save" type="submit">

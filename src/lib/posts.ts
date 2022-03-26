@@ -146,7 +146,7 @@ export async function createPost(
 	const params = draft ? '?ref=draft' : ''
 	const post = await fetch(`${postsUrl}/${slug}.md${params}`, { headers })
 	if (post.status === 200) {
-		throw new Error(`${slug} already exists. 🤷`)
+		throw new Error(`The post already exists. 👻`)
 	}
 
 	const createPost = await fetch(`${postsUrl}/${slug}.md`, {
@@ -161,7 +161,7 @@ export async function createPost(
 	})
 
 	if (createPost.status !== 201) {
-		throw new Error(`Something went wrong creating "${slug}"! 💩`)
+		throw new Error(`Something went wrong creating the post. 💩`)
 	}
 }
 

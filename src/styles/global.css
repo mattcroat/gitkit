@@ -26,6 +26,14 @@
 
 	--radius-1: 1.6rem;
 	--radius-2: 2rem;
+
+	--toastWidth: 40rem;
+	--toastMinHeight: 2rem;
+	--toastPadding: 1rem;
+	--toastContainerRight: auto;
+	--toastContainerLeft: calc(50vw - 20rem);
+	--toastBackground: #f56565;
+	--toastBarBackground: #c53030;
 }
 
 html {
