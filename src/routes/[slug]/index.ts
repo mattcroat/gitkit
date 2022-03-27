@@ -6,6 +6,7 @@ export const get: RequestHandler = async ({ params }) => {
 	const { content, frontmatter } = await getPost(params.slug)
 
 	return {
+		status: 200,
 		headers: {
 			'Cache-Control': `max-age=60, s-maxage=60`
 		},

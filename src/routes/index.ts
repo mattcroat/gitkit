@@ -6,6 +6,7 @@ export const get: RequestHandler = async () => {
 	const posts = await getPosts()
 
 	return {
+		status: 200,
 		headers: {
 			'Cache-Control': `max-age=3600, s-maxage=60`
 		},
