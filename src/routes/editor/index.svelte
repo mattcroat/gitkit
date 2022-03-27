@@ -5,6 +5,7 @@
 	} from '@rgossiaux/svelte-heroicons/outline'
 
 	import { enhance } from '$root/lib/form'
+	import { failure, success } from '$root/lib/toast'
 	import type { PostItemType } from '$root/types'
 
 	export let drafts: PostItemType[] = []
@@ -28,7 +29,17 @@
 					<a href="/editor/edit/{draft.slug}?draft=true" sveltekit:prefetch>
 						{draft.title}
 					</a>
-					<form action="/editor?_method=delete" method="post" use:enhance>
+					<form
+						action="/editor?_method=delete"
+						method="post"
+						use:enhance={{
+							error: async ({ response }) => {
+								const { error } = await response.json()
+								failure(error)
+							},
+							result: async () => success('👻 Post removed.')
+						}}
+					>
 						<input type="hidden" name="draft" />
 						<input type="hidden" name="slug" value={draft.slug} />
 						<button type="submit">
@@ -46,7 +57,17 @@
 			{#each published as post}
 				<li class="post">
 					<a href="/editor/edit/{post.slug}" sveltekit:prefetch>{post.title}</a>
-					<form action="/editor?_method=delete" method="post" use:enhance>
+					<form
+						action="/editor?_method=delete"
+						method="post"
+						use:enhance={{
+							error: async ({ response }) => {
+								const { error } = await response.json()
+								failure(error)
+							},
+							result: async () => success('👻 Post removed.')
+						}}
+					>
 						<input type="hidden" name="slug" value={post.slug} />
 						<button type="submit">
 							<svg
