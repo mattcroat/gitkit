@@ -81,6 +81,35 @@ export async function getPosts(): Promise<PostItemType[]> {
 	return posts
 }
 
+export async function getPostsByCategory(
+	category: string
+): Promise<PostItemType[]> {
+	const response = await fetch(postsUrl, { headers })
+
+	if (!response.ok) {
+		throw new Error('Could not fetch posts! 💩')
+	}
+
+	const postsData: GitHubAPIResponseType[] = await response.json()
+	const slugs = postsData.map((post) => post.name.replace('.md', ''))
+
+	let posts = []
+	for (const postSlug of slugs) {
+		const frontMatter = await getFrontMatter(postSlug)
+		if (frontMatter.category === category) {
+			posts = [
+				...posts,
+				{
+					slug: frontMatter.slug,
+					title: frontMatter.title
+				}
+			]
+		}
+	}
+
+	return posts
+}
+
 export async function getDrafts(): Promise<PostItemType[]> {
 	const response = await fetch(`${postsUrl}?ref=draft`, { headers })
 

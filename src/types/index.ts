@@ -34,6 +34,8 @@ export type FrontMatterType = {
 	description: string
 	slug: string
 	published: string
+	category: string
+	image: string
 }
 
 export type PostType = {
