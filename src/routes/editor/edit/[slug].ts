@@ -28,16 +28,23 @@ export const post: RequestHandler = async ({ params, request, url }) => {
 		publishDraft: draft && publish
 	}
 
-	if (action.save) {
-		await editPost(params.slug, markdown)
-	}
+	try {
+		if (action.save) {
+			await editPost(params.slug, markdown)
+		}
 
-	if (action.saveDraft) {
-		await editPost(params.slug, markdown, { draft: true })
-	}
+		if (action.saveDraft) {
+			await editPost(params.slug, markdown, { draft: true })
+		}
 
-	if (action.publishDraft) {
-		await createPost(params.slug, markdown)
+		if (action.publishDraft) {
+			await createPost(params.slug, markdown)
+		}
+	} catch (error) {
+		return {
+			status: 400,
+			body: { error: error.message }
+		}
 	}
 
 	return {
