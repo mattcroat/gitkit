@@ -2,7 +2,6 @@
 	import { getContext } from 'svelte'
 	import { goto } from '$app/navigation'
 	import { ArrowLeftIcon, SaveIcon } from '@rgossiaux/svelte-heroicons/outline'
-	import { SvelteToast } from '@zerodevx/svelte-toast'
 
 	import { enhance } from '$root/lib/form'
 	import { failure, success } from '$root/lib/toast'
@@ -13,8 +12,6 @@
 	$: title = $post.markdown.match(/title: (.*)/)[1].trim()
 	$: slug = $post.markdown.match(/slug: '(.*)'/)[1].trim()
 </script>
-
-<SvelteToast options={{ duration: 2000, intro: { y: -100 } }} />
 
 <div class="toolbar">
 	<a class="back" href="/editor" sveltekit:prefetch>
@@ -29,7 +26,7 @@
 				failure(error)
 			},
 			result: async () => {
-				success(`Saved "${title}"" as draft. 👍️`)
+				success(`💾 Saved "${title}"" as draft.`)
 				await new Promise((resolve) => setTimeout(resolve, 2000))
 				goto('/editor')
 			}

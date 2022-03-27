@@ -2,7 +2,6 @@
 	import { getContext } from 'svelte'
 	import { page } from '$app/stores'
 	import { goto } from '$app/navigation'
-	import { SvelteToast } from '@zerodevx/svelte-toast'
 
 	import {
 		ArrowLeftIcon,
@@ -21,8 +20,6 @@
 	const url = draft ? draftFileUrl : fileUrl
 	const viewUrl = `${url}/${$post.slug}.md`
 </script>
-
-<SvelteToast options={{ duration: 2000, intro: { y: -100 } }} />
 
 <div class="toolbar">
 	<a class="back" href="/editor" sveltekit:prefetch>
