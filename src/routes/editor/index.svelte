@@ -108,6 +108,11 @@
 		padding: var(--spacing-20);
 	}
 
+	section {
+		display: grid;
+		gap: var(--spacing-8);
+	}
+
 	.create-post {
 		width: max-content;
 		display: flex;
