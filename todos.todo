@@ -4,15 +4,18 @@ Token:
   ✔ Add .env.example @done
 
 Posts:
-  ✔ List posts @done
-  ✔ View post by slug @done
-  ✔ Add post @done
-  ✔ Remove post @done
-  ✔ Edit post @done
-  ✔ Draft @done
-  ☐ Categories
-  ☐ Caching
-  ☐ Pagination
+  General:
+    ✔ List posts @done
+    ✔ View post by slug @done
+    ✔ Add post @done
+    ✔ Remove post @done
+    ✔ Edit post @done
+    ✔ Draft @done
+    ✔ Categories @done
+    ☐ Caching
+  Ideas:
+    ☐ Store post metadata in a JSON file
+    ☐ Pagination
 
 Editor:
   CRUD:
@@ -20,7 +23,7 @@ Editor:
     ✔ Preview @done
     ✔ Able to edit post @done
     ✔ Publish post from draft branch @done
-  Wish:
+  Ideas:
     ☐ Preload editor
     ☐ Autosave
 
@@ -54,9 +57,10 @@ Site:
     ☐ Uses page
   Polish:
     ☐ Optimistic UI
-    ☐ Error handling
-    ☐ Toast notifications
+    ✔ Error handling @done
+    ✔ Toast notifications @done
     ☐ Transitions
+    ☐ Redirect 404
   Tests:
     ☐ A11Y
     ☐ Posts
