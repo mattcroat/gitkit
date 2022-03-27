@@ -10,7 +10,7 @@ import { invalidate } from '$app/navigation'
 
 type Enhance = (
 	form?: HTMLFormElement,
-	{ pending, error, result }?: Parameters
+	{ pending, error, result, confirmation }?: Parameters
 ) => Destroy
 
 type Parameters = {
@@ -35,15 +35,24 @@ type Parameters = {
 		response: Response
 		form: HTMLFormElement
 	}) => void
+	confirmation?: () => boolean
 }
 
 type Destroy = { destroy: () => void }
 
-export const enhance: Enhance = (form, { pending, error, result } = {}) => {
+export const enhance: Enhance = (
+	form,
+	{ pending, error, result, confirmation } = {}
+) => {
 	let currentToken: unknown
 
 	async function handleSubmit(event: Event) {
 		event.preventDefault()
+
+		if (confirmation) {
+			const response = confirmation()
+			if (!response) return
+		}
 
 		const token = {}
 		currentToken = token

@@ -37,7 +37,11 @@
 								const { error } = await response.json()
 								failure(error)
 							},
-							result: async () => success('👻 Post removed.')
+							result: async () => success('👻 Post removed.'),
+							confirmation: () => {
+								const response = confirm('Are you sure?')
+								return response
+							}
 						}}
 					>
 						<input type="hidden" name="draft" />
@@ -65,7 +69,11 @@
 								const { error } = await response.json()
 								failure(error)
 							},
-							result: async () => success('👻 Post removed.')
+							result: async () => success('👻 Post removed.'),
+							confirmation: () => {
+								const response = confirm('Are you sure?')
+								return response
+							}
 						}}
 					>
 						<input type="hidden" name="slug" value={post.slug} />
