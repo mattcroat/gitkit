@@ -21,7 +21,9 @@ export type RateAPIResponseType = {
 	limit: number
 	used: number
 	remaining: number
-	reset: number
+	remainingMinutes: number
+	reset: string
+	resetTimeLocale: string
 }
 
 export type PostItemType = {

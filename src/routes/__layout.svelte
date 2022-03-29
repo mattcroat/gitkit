@@ -1,10 +1,13 @@
 <script lang="ts">
 	import Settings from '$root/components/settings/index.svelte'
+	import Measure from '$root/components/measure/index.svelte'
 	import '$root/styles/global.css'
 	import '$root/styles/post.css'
 	import '$root/styles/themes.css'
 	import '$root/styles/code.css'
 </script>
+
+<Measure />
 
 <nav>
 	<a href="/">Home</a>

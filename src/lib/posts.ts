@@ -17,7 +17,30 @@ const headers = {
 export async function getRateLimit(): Promise<RateAPIResponseType> {
 	const response = await fetch('https://api.github.com/rate_limit', { headers })
 	const { resources } = await response.json()
-	return resources.core
+	const { limit, used, remaining, reset } = resources.core
+
+	const currentTime = new Date()
+	const resetTime = new Date(reset * 1000)
+
+	const remainingMinutes = +(
+		(resetTime.getTime() - currentTime.getTime()) /
+		1000 /
+		60
+	).toFixed()
+
+	const resetTimeLocale = resetTime.toLocaleTimeString('en', {
+		hour: '2-digit',
+		minute: '2-digit'
+	})
+
+	return {
+		limit,
+		used,
+		remaining,
+		remainingMinutes,
+		reset,
+		resetTimeLocale
+	}
 }
 
 async function getPostSHA(
