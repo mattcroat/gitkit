@@ -17,21 +17,21 @@
 
 			// check if the user set a theme
 			if (userTheme) {
-				htmlElement.className = userTheme
+				htmlElement.dataset.theme = userTheme
 			}
 
 			// otherwise check for user preference
 			if (!userTheme && prefersDarkMode) {
-				localStorage.theme = 'night'
+				localStorage.theme = '🌛 Night'
 			}
 
 			if (!userTheme && prefersLightMode) {
-				localStorage.theme = 'light'
+				localStorage.theme = '☀️ Daylight'
 			}
 
 			// if nothing is set default to dark mode
 			if (!userTheme && !prefersDarkMode && !prefersLightMode) {
-				localStorage.theme = 'night'
+				localStorage.theme = '🌛 Night'
 			}
 		</script>
 		%svelte.head%

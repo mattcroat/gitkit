@@ -1,4 +1,4 @@
-html[class='night'] {
+html[data-theme='🌛 Night'] {
 	--color-highlight: hsl(38 93% 76%);
 	--color-code-line-highlight: hsl(218 26% 20%);
 	--color-code-line-number: hsl(218 26% 40%);
@@ -10,7 +10,7 @@ html[class='night'] {
 	--color-token-6: hsl(217 10% 64%);
 }
 
-html[class='daylight'] {
+html[data-theme='☀️ Daylight'] {
 	--color-highlight: hsl(210 60% 42%);
 	--color-code-line-highlight: hsl(0 0% 94%);
 	--color-code-line-number: hsl(0 0% 80%);
@@ -22,7 +22,7 @@ html[class='daylight'] {
 	--color-token-6: hsl(217 10% 64%);
 }
 
-html[class='nighthowl'] {
+html[data-theme='🐺 Night Howl'] {
 	--color-highlight: hsl(207 100% 94%);
 	--color-code-line-highlight: hsl(206 50% 20%);
 	--color-code-line-number: hsl(206 50% 40%);
@@ -34,7 +34,7 @@ html[class='nighthowl'] {
 	--color-token-6: hsl(217 10% 64%);
 }
 
-html[class='nightmind'] {
+html[data-theme='🧠 Night Mind'] {
 	--color-highlight: hsl(9 100% 84%);
 	--color-code-line-highlight: hsl(256 14% 24%);
 	--color-code-line-number: hsl(256 14% 40%);

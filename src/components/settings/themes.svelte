@@ -9,13 +9,13 @@
 	} from '@rgossiaux/svelte-headlessui'
 
 	const themes = {
-		night: { class: 'night', text: '🌛 Night' },
-		daylight: { class: 'daylight', text: '☀️ Daylight' },
-		nighthowl: { class: 'nighthowl', text: '🐺 Night Howl' },
-		nightmind: { class: 'nightmind', text: '🧠 Night Mind' }
+		'🌛 Night': { name: '🌛 Night' },
+		'☀️ Daylight': { name: '☀️ Daylight' },
+		'🐺 Night Howl': { name: '🐺 Night Howl' },
+		'🧠 Night Mind': { name: '🧠 Night Mind' }
 	}
 
-	let selectedTheme = getTheme() ?? themes['night']
+	let selectedTheme = getTheme() ?? themes['🌛 Night']
 
 	function getTheme() {
 		if (typeof localStorage === 'undefined') return
@@ -31,35 +31,36 @@
 
 		// check if the user set a theme
 		if (userTheme) {
-			htmlElement.className = userTheme
+			htmlElement.dataset.theme = userTheme
 			return themes[userTheme]
 		}
 
 		// otherwise check for user preference
 		if (!userTheme && prefersDarkMode) {
-			htmlElement.className = 'night'
-			localStorage.theme = 'night'
+			htmlElement.dataset.theme = '🌛 Night'
+			localStorage.theme = '🌛 Night'
 		}
 
 		if (!userTheme && prefersLightMode) {
-			htmlElement.className = 'light'
-			localStorage.theme = 'light'
+			htmlElement.dataset.theme = '☀️ Daylight'
+			localStorage.theme = '☀️ Daylight'
 		}
 
 		// if nothing is set default to dark mode
 		if (!userTheme && !prefersDarkMode && !prefersLightMode) {
-			htmlElement.className = 'night'
-			localStorage.theme = 'night'
+			htmlElement.dataset.theme = '🌛 Night'
+			localStorage.theme = '🌛 Night'
 		}
 
 		return themes[userTheme]
 	}
 
 	function handleChange(event: CustomEvent) {
-		selectedTheme = themes[event.detail.class]
+		selectedTheme = themes[event.detail.name]
+
 		const htmlElement = document.documentElement
-		htmlElement.className = selectedTheme.class
-		localStorage.theme = selectedTheme.class
+		htmlElement.dataset.theme = selectedTheme.name
+		localStorage.theme = selectedTheme.name
 	}
 </script>
 
@@ -68,7 +69,7 @@
 		<ListboxLabel class="sr-only">Theme</ListboxLabel>
 
 		<ListboxButton class="button">
-			<span>{selectedTheme.text}</span>
+			<span>{selectedTheme.name}</span>
 			<span>
 				<svg
 					width="20"
@@ -94,7 +95,7 @@
 					{#each Object.entries(themes) as [key, theme] (key)}
 						<ListboxOption value={theme} let:active let:selected>
 							<span class="option" class:active class:selected>
-								{theme.text}
+								{theme.name}
 							</span>
 						</ListboxOption>
 					{/each}
