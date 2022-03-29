@@ -12,9 +12,12 @@ Posts:
     ✔ Edit post @done
     ✔ Draft @done
     ✔ Categories @done
-    ☐ Caching
+    ☐ Convert old posts from `.mdx` to `.md`
+  Caching:
+    ✔ New posts should have a short cache that's longer after some time @done
+    ☐ Use **etag** from the response instead to know when a post is changed to rebuild the page
   Ideas:
-    ☐ Store post metadata in a JSON file
+    ☐ Store post metadata in a JSON file to avoid API rate limit
     ☐ Pagination
 
 Editor:
@@ -29,13 +32,12 @@ Editor:
 
 Markdown:
   General:
-    ✔ Frontmatter (gray-matter) @done
-    ☐ Able to copy code
-    ☐ Image dimensions
+    ✔ Use gray-matter to parse post front matter @done
+    ☐ Create plugin for copying code
+    ☐ Create plugin to get image dimensions
   Code highlight:
     ✔ Prism (themes, line highlight and numbers) @done
   Plugins:
-    ✔ remark-shiki-twoslash @done
     ✔ remark-gfm @done
     ✔ remark-autolink-headings @done
     ✔ remark-slug @done
@@ -48,8 +50,13 @@ Markdown:
 Site:
   Features:
     ☐ A11Y
-    ☐ SEO
-    ✔ Theming @done
+      ✔ Themes @done
+      ☐ Font for dyslexia
+      ☐ Font size control
+      ☐ Line length control
+    ✔ SEO @done
+      ✔ Page meta @done
+      ✔ Post meta @done
     ☐ Newsletter
     ☐ RSS feed
     ☐ Sitemap
@@ -60,7 +67,9 @@ Site:
     ✔ Error handling @done
     ✔ Toast notifications @done
     ☐ Transitions
-    ☐ Redirect 404
+    ☐ Redirect not found pages
+  Vercel:
+    ☐ Avoid redeploy for posts  
   Tests:
     ☐ A11Y
     ☐ Posts
