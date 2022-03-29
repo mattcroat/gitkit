@@ -154,16 +154,4 @@
 	.listbox :global(.selected) {
 		font-weight: 700;
 	}
-
-	.listbox :global(.sr-only) {
-		width: 1px;
-		height: 1px;
-		position: absolute;
-		margin: -1px;
-		padding: 0;
-		clip: rect(0, 0, 0, 0);
-		white-space: nowrap;
-		border-width: 0;
-		overflow: hidden;
-	}
 </style>

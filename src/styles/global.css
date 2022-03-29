@@ -46,10 +46,14 @@ body {
 }
 
 body {
-	font-family: 'Poppins', sans-serif;
 	font-size: var(--font-18);
+	font-family: 'Poppins', sans-serif;
 	color: hsl(0 0% 98%);
 	background-color: hsl(220 20% 14%);
+}
+
+html[data-font='dyslexic'] {
+	font-family: 'Open Dyslexic', sans-serif;
 }
 
 h1 {
@@ -88,4 +92,16 @@ button {
 	border: none;
 	border-radius: var(--radius-1);
 	cursor: pointer;
+}
+
+.sr-only {
+	width: 1px;
+	height: 1px;
+	position: absolute;
+	margin: -1px;
+	padding: 0;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border-width: 0;
+	overflow: hidden;
 }
