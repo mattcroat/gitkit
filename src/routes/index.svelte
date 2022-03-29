@@ -5,6 +5,10 @@
 	export let posts: PostItemType[] = []
 </script>
 
+<svelte:head>
+	<title>GitKit</title>
+</svelte:head>
+
 <section>
 	<h2>Posts</h2>
 	<div class="posts">

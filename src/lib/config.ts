@@ -1,9 +1,14 @@
+export const siteName = 'GitKit'
+export const siteUrl = 'http://localhost:3000/'
+export const twitterHandle = '@joyofcodedev'
+
 export const api = 'https://api.github.com'
 export const owner = 'mattcroat'
 export const repo = 'gitkit'
 export const path = 'posts'
 export const mainBranch = 'main'
 export const draftBranch = 'draft'
+
 export const categories = [
 	'javascript',
 	'react',

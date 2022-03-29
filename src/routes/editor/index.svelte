@@ -12,6 +12,10 @@
 	export let published: PostItemType[] = []
 </script>
 
+<svelte:head>
+	<title>Editor</title>
+</svelte:head>
+
 <main>
 	<section>
 		<h2>Create Post</h2>

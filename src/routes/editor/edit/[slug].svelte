@@ -6,4 +6,8 @@
 	export let markdown = ''
 </script>
 
+<svelte:head>
+	<title>{title}</title>
+</svelte:head>
+
 <Editor {slug} {title} {markdown} />

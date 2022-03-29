@@ -8,8 +8,12 @@
 	const title = $page.params.category
 </script>
 
+<svelte:head>
+	<title>Category | {title[0].toUpperCase() + title.substring(1)}</title>
+</svelte:head>
+
 <section>
-	<h1>{title}</h1>
+	<h1>Viewing posts for {title}</h1>
 	<div class="posts">
 		{#each posts as post}
 			<article class="post">
