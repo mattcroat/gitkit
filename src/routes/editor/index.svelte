@@ -23,9 +23,9 @@
 
 	<section>
 		<h2>Draft</h2>
-		<ul class="posts">
+		<div class="posts">
 			{#each drafts as draft}
-				<li class="post">
+				<article class="post">
 					<a href="/editor/edit/{draft.slug}?draft=true" sveltekit:prefetch>
 						{draft.title}
 					</a>
@@ -50,16 +50,16 @@
 							<TrashIcon width="24" height="24" />
 						</button>
 					</form>
-				</li>
+				</article>
 			{/each}
-		</ul>
+		</div>
 	</section>
 
 	<section>
 		<h2>Published</h2>
-		<ul class="posts">
+		<div class="posts">
 			{#each published as post}
-				<li class="post">
+				<article class="post">
 					<a href="/editor/edit/{post.slug}" sveltekit:prefetch>{post.title}</a>
 					<form
 						action="/editor?_method=delete"
@@ -95,9 +95,9 @@
 							</svg>
 						</button>
 					</form>
-				</li>
+				</article>
 			{/each}
-		</ul>
+		</div>
 	</section>
 </main>
 
