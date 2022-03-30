@@ -9,6 +9,8 @@
 			const htmlElement = document.documentElement
 			const userTheme = localStorage.theme
 			const userFont = localStorage.font
+			const userPostFontSize = localStorage.size
+			const userPostTextLength = localStorage.text
 
 			const prefersDarkMode = window.matchMedia(
 				'prefers-color-scheme: dark'
@@ -20,6 +22,19 @@
 			// check if the user set a dyslexic font
 			if (userFont) {
 				htmlElement.dataset.font = userFont
+			}
+
+			// check if the user set a font size for posts
+			if (userPostFontSize) {
+				htmlElement.style.setProperty('--post-font-size', userPostFontSize)
+			}
+
+			// check if the user set a text length for posts
+			if (userPostTextLength) {
+				htmlElement.style.setProperty(
+					'--post-reading-length',
+					userPostTextLength
+				)
 			}
 
 			// check if the user set a theme

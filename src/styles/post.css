@@ -1,7 +1,8 @@
 .prose {
-	max-width: 60ch;
+	max-width: var(--post-reading-length);
 	display: grid;
 	gap: 2rem;
+	font-size: var(--post-font-size);
 }
 
 .prose h1 {
@@ -22,6 +23,16 @@
 
 .prose p {
 	line-height: 1.8;
+}
+
+.prose ul,
+.prose ol {
+	list-style-type: none;
+	list-style-position: inside;
+}
+
+.prose ol {
+	list-style-type: decimal;
 }
 
 .prose ul li::before {

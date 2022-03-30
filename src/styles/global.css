@@ -7,6 +7,9 @@
 }
 
 :root {
+	--post-font-size: var(--font-18);
+	--post-reading-length: 60ch;
+
 	--font-sans: Poppins, sans-serif;
 	--font-mono: Source Code Pro, monospace;
 	--font-dyslexic: OpenDyslexic, sans-serif;
