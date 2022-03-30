@@ -52,8 +52,8 @@ Site:
     ☐ A11Y
       ✔ Themes @done
       ✔ Font for dyslexia @done
-      ☐ Font size control
-      ☐ Line length control
+      ✔ Font size control @done
+      ✔ Text length control @done
     ✔ SEO @done
       ✔ Page meta @done
       ✔ Post meta @done
@@ -68,6 +68,7 @@ Site:
     ✔ Toast notifications @done
     ☐ Transitions
     ☐ Redirect not found pages
+    ☐ Sounds
   Vercel:
     ☐ Avoid redeploy for posts  
   Tests:
