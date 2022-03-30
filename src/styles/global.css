@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
-
 *,
 *::before,
 *::after {
@@ -9,7 +7,11 @@
 }
 
 :root {
-	--font-serif: 'Poppins', sans-serif;
+	--font-sans: Poppins, sans-serif;
+	--font-mono: Source Code Pro, monospace;
+	--font-dyslexic: OpenDyslexic, sans-serif;
+	--font-dyslexic-mono: OpenDyslexic Mono, monospace;
+
 	--font-16: 1.6rem;
 	--font-18: 1.8rem;
 	--font-20: 2rem;
@@ -36,6 +38,70 @@
 	--toastBarBackground: #c53030;
 }
 
+@font-face {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('/fonts/poppins/Poppins-Regular.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: url('/fonts/poppins/Poppins-Bold.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 900;
+	font-display: swap;
+	src: url('/fonts/poppins/Poppins-Black.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Source Code Pro';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('/fonts/source-code-pro/SourceCodePro-Regular.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Source Code Pro';
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: url('/fonts/source-code-pro/SourceCodePro-Bold.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'OpenDyslexic';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('/fonts/openDyslexic/OpenDyslexic-Regular.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'OpenDyslexic Mono';
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: url('/fonts/openDyslexic/OpenDyslexic-Bold.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'OpenDyslexic';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('/fonts/openDyslexic/OpenDyslexicMono-Regular.woff2') format('woff2');
+}
+
 html {
 	font-size: 62.5%;
 }
@@ -46,14 +112,14 @@ body {
 }
 
 body {
+	font-family: var(--font-sans);
 	font-size: var(--font-18);
-	font-family: 'Poppins', sans-serif;
 	color: hsl(0 0% 98%);
 	background-color: hsl(220 20% 14%);
 }
 
-html[data-font='dyslexic'] {
-	font-family: 'Open Dyslexic', sans-serif;
+html[data-font='dyslexic'] body {
+	font-family: var(--font-dyslexic);
 }
 
 h1 {
