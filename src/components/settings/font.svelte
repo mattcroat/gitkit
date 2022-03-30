@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { browser } from '$app/env'
 	import {
 		Switch,
 		SwitchGroup,
@@ -7,7 +8,7 @@
 
 	let enabled = false
 
-	if (typeof localStorage !== 'undefined') {
+	if (browser) {
 		localStorage.font ? (enabled = true) : (enabled = false)
 	}
 

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { browser } from '$app/env'
 	import { fade } from 'svelte/transition'
 	import {
 		Listbox,
@@ -18,7 +19,7 @@
 	let selectedTheme = getTheme() ?? themes['🌛 Night']
 
 	function getTheme() {
-		if (typeof localStorage === 'undefined') return
+		if (!browser) return
 
 		const htmlElement = document.documentElement
 		const userTheme = localStorage.theme
