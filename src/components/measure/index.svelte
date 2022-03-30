@@ -21,7 +21,7 @@
 
 <style>
 	.rate {
-		--space: 20px;
+		--space: 10px;
 
 		position: fixed;
 		top: var(--space);
