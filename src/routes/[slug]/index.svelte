@@ -24,6 +24,29 @@
 	<meta content={frontmatter.image} name="twitter:image" />
 </svelte:head>
 
-<div class="prose">
-	{@html content}
-</div>
+<main>
+	<div class="prose">
+		{@html content}
+	</div>
+</main>
+
+<style>
+	.prose {
+		display: grid;
+		grid-template-columns:
+			1fr [gutter-start] 100px [content-start] var(--post-reading-length)
+			[content-end] 100px [gutter-end] 1fr;
+		row-gap: 2rem;
+		font-size: var(--post-font-size);
+	}
+
+	.prose > :global(*) {
+		grid-column: content-start / content-end;
+	}
+
+	.prose :global(img),
+	.prose :global(.rehype-code-title),
+	.prose :global(pre) {
+		grid-column: gutter-start / gutter-end;
+	}
+</style>

@@ -1,10 +1,3 @@
-.prose {
-	max-width: var(--post-reading-length);
-	display: grid;
-	gap: 2rem;
-	font-size: var(--post-font-size);
-}
-
 .prose h1 {
 	margin: 4rem 0;
 	font-size: 6rem;
