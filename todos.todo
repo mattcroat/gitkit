@@ -49,7 +49,7 @@ Markdown:
 
 Site:
   Features:
-    ☐ A11Y
+    ✔ A11Y @done
       ✔ Themes @done
       ✔ Font for dyslexia @done
       ✔ Font size control @done
