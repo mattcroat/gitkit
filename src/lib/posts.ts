@@ -62,7 +62,9 @@ async function getFrontMatter(
 	{ draft }: { draft?: boolean } = {}
 ): Promise<FrontMatterType> {
 	const params = draft ? '?ref=draft' : ''
-	const postUrl = `${postsUrl}/${slug}.md${params}`
+	const postUrl = `${postsUrl}/${slug}/${slug}.md${params}`
+
+	console.log(slug)
 
 	const response = await fetch(postUrl, {
 		headers: {
@@ -73,7 +75,7 @@ async function getFrontMatter(
 	})
 
 	if (!response.ok) {
-		throw new Error(`Could not fetch "${slug}"! 💩`)
+		throw new Error(`💩 Could not fetch ${postUrl}`)
 	}
 
 	const postMarkdown = await response.text()
@@ -86,11 +88,11 @@ export async function getPosts(): Promise<PostItemType[]> {
 	const response = await fetch(postsUrl, { headers })
 
 	if (!response.ok) {
-		throw new Error('Could not fetch posts! 💩')
+		throw new Error('💩 Could not fetch posts!')
 	}
 
 	const postsData: GitHubAPIResponseType[] = await response.json()
-	const slugs = postsData.map((post) => post.name.replace('.md', ''))
+	const slugs = postsData.map((post) => post.name)
 
 	let posts = []
 	for (const postSlug of slugs) {
@@ -110,7 +112,7 @@ export async function getPostsByCategory(
 	const response = await fetch(postsUrl, { headers })
 
 	if (!response.ok) {
-		throw new Error('Could not fetch posts! 💩')
+		throw new Error('💩 Could not fetch posts!')
 	}
 
 	const postsData: GitHubAPIResponseType[] = await response.json()
@@ -137,11 +139,11 @@ export async function getDrafts(): Promise<PostItemType[]> {
 	const response = await fetch(`${postsUrl}?ref=draft`, { headers })
 
 	if (!response.ok) {
-		throw new Error('Could not fetch posts! 💩')
+		throw new Error('💩 Could not fetch posts!')
 	}
 
 	const postsData: GitHubAPIResponseType[] = await response.json()
-	const slugs = postsData.map((post) => post.name.replace('.md', ''))
+	const slugs = postsData.map((post) => post.name)
 
 	let posts = []
 	for (const postSlug of slugs) {
@@ -176,7 +178,7 @@ export async function getPost(
 	})
 
 	if (!response.ok) {
-		throw new Error(`Could not fetch "${slug}"! 💩`)
+		throw new Error(`💩 Could not fetch ${postUrl}`)
 	}
 
 	const postMarkdown = await response.text()
@@ -191,14 +193,14 @@ export async function createPost(
 	{ draft }: { draft?: boolean } = {}
 ): Promise<void> {
 	if (!slug) {
-		throw new Error(`You have to specify a slug. 🐌`)
+		throw new Error(`🐌 You have to specify a slug`)
 	}
 
 	// check if post already exists
 	const params = draft ? '?ref=draft' : ''
 	const post = await fetch(`${postsUrl}/${slug}.md${params}`, { headers })
 	if (post.status === 200) {
-		throw new Error(`The post already exists. 👻`)
+		throw new Error(`👻 The post already exists`)
 	}
 
 	const createPost = await fetch(`${postsUrl}/${slug}.md`, {
@@ -213,7 +215,7 @@ export async function createPost(
 	})
 
 	if (createPost.status !== 201) {
-		throw new Error(`Something went wrong creating the post. 💩`)
+		throw new Error(`💩 Something went wrong creating ${postsUrl}/${slug}.md`)
 	}
 }
 
@@ -222,7 +224,7 @@ export async function removePost(
 	{ draft }: { draft?: boolean } = {}
 ): Promise<void> {
 	if (!slug) {
-		throw new Error('Invalid slug. 🐌')
+		throw new Error('🐌 Invalid slug')
 	}
 
 	const removePost = await fetch(`${postsUrl}/${slug}.md`, {
@@ -236,7 +238,7 @@ export async function removePost(
 	})
 
 	if (removePost.status !== 200) {
-		throw new Error(`Something went wrong removing "${slug}"! 💩`)
+		throw new Error(`💩 Something went wrong removing "${postsUrl}/${slug}.md"`)
 	}
 }
 
@@ -246,7 +248,7 @@ export async function editPost(
 	{ draft }: { draft?: boolean } = {}
 ): Promise<void> {
 	if (!slug || !content) {
-		throw new Error(`You have to specify the slug and content. 🤷`)
+		throw new Error(`🤷 You have to specify the slug and content`)
 	}
 
 	const updatePost = await fetch(`${postsUrl}/${slug}.md`, {
@@ -262,6 +264,6 @@ export async function editPost(
 	})
 
 	if (updatePost.status !== 200) {
-		throw new Error(`Something went wrong updating ${slug}! 💩`)
+		throw new Error(`💩 Something went wrong updating ${postsUrl}/${slug}.md`)
 	}
 }
