@@ -3,13 +3,15 @@
 
 	import type { PostItemType } from '$root/types'
 	import { DocumentTextIcon } from '@rgossiaux/svelte-heroicons/outline'
+	import { capitalize } from '$root/utils/text'
 
 	export let posts: PostItemType[]
+
 	const title = $page.params.category
 </script>
 
 <svelte:head>
-	<title>Category | {title[0].toUpperCase() + title.substring(1)}</title>
+	<title>Category | {capitalize(title)}</title>
 </svelte:head>
 
 <section>
