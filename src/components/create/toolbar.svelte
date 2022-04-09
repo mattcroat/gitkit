@@ -14,7 +14,7 @@
 </script>
 
 <div class="toolbar">
-	<a class="back" href="/editor" sveltekit:prefetch>
+	<a class="back" href="/" sveltekit:prefetch>
 		<ArrowLeftIcon width="24" height="24" />
 	</a>
 	<span class="title">{title}</span>
@@ -28,7 +28,7 @@
 			result: async () => {
 				success(`💾 Saved "${title}"" as draft.`)
 				await new Promise((resolve) => setTimeout(resolve, 2000))
-				goto('/editor')
+				goto('/')
 			}
 		}}
 	>

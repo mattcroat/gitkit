@@ -12,8 +12,6 @@
 
 	--font-sans: Poppins, sans-serif;
 	--font-mono: Source Code Pro, monospace;
-	--font-dyslexic: OpenDyslexic, sans-serif;
-	--font-dyslexic-mono: OpenDyslexic Mono, monospace;
 
 	--font-16: 1.6rem;
 	--font-18: 1.8rem;
@@ -81,30 +79,6 @@
 	src: url('/fonts/source-code-pro/SourceCodePro-Bold.woff2') format('woff2');
 }
 
-@font-face {
-	font-family: 'OpenDyslexic';
-	font-style: normal;
-	font-weight: 400;
-	font-display: swap;
-	src: url('/fonts/openDyslexic/OpenDyslexic-Regular.woff2') format('woff2');
-}
-
-@font-face {
-	font-family: 'OpenDyslexic Mono';
-	font-style: normal;
-	font-weight: 700;
-	font-display: swap;
-	src: url('/fonts/openDyslexic/OpenDyslexic-Bold.woff2') format('woff2');
-}
-
-@font-face {
-	font-family: 'OpenDyslexic';
-	font-style: normal;
-	font-weight: 400;
-	font-display: swap;
-	src: url('/fonts/openDyslexic/OpenDyslexicMono-Regular.woff2') format('woff2');
-}
-
 html {
 	font-size: 62.5%;
 }
@@ -119,10 +93,6 @@ body {
 	font-size: var(--font-18);
 	color: hsl(0 0% 98%);
 	background-color: hsl(220 20% 14%);
-}
-
-html[data-font='dyslexic'] body {
-	font-family: var(--font-dyslexic);
 }
 
 h1 {
@@ -161,16 +131,4 @@ button {
 	border: none;
 	border-radius: var(--radius-1);
 	cursor: pointer;
-}
-
-.sr-only {
-	width: 1px;
-	height: 1px;
-	position: absolute;
-	margin: -1px;
-	padding: 0;
-	clip: rect(0, 0, 0, 0);
-	white-space: nowrap;
-	border-width: 0;
-	overflow: hidden;
 }

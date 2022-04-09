@@ -22,7 +22,7 @@
 </script>
 
 <div class="toolbar">
-	<a class="back" href="/editor" sveltekit:prefetch>
+	<a class="back" href="/" sveltekit:prefetch>
 		<ArrowLeftIcon width="24" height="24" />
 	</a>
 

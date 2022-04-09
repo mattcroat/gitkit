@@ -18,6 +18,6 @@ export const post: RequestHandler = async ({ request }) => {
 
 	return {
 		status: 303,
-		headers: { location: '/editor' }
+		headers: { location: '/' }
 	}
 }

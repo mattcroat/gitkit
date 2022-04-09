@@ -3,12 +3,6 @@
 	font-family: var(--font-mono);
 }
 
-html[data-font='dyslexic'] .prose kbd,
-html[data-font='dyslexic'] .prose code,
-html[data-font='dyslexic'] .prose .rehype-code-title {
-	font-family: var(--font-dyslexic-mono);
-}
-
 .prose pre {
 	padding: var(--spacing-16) 0;
 	background-color: hsl(220 20% 10%);
