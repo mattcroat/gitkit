@@ -1,0 +1,12 @@
+{
+	"posts": [
+		{
+			"title": "Title",
+			"description": "Description",
+			"slug": "slug",
+			"category": "category",
+			"series": false,
+			"draft": false
+		}
+	]
+}
