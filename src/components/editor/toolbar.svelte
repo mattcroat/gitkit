@@ -26,12 +26,12 @@
 	<form
 		method="post"
 		use:enhance={{
+			pending: async () => {
+				success(`💾 ${$post.slug}.md saved`)
+			},
 			error: async ({ response }) => {
 				const { error } = await response.json()
 				failure(error)
-			},
-			result: async () => {
-				success(`💾 ${$post.slug}.md saved`)
 			}
 		}}
 	>

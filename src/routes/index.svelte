@@ -34,11 +34,11 @@
 						action="?_method=delete"
 						method="post"
 						use:enhance={{
+							pending: async () => success(`👻 ${post.slug}.md removed`),
 							error: async ({ response }) => {
 								const { error } = await response.json()
 								failure(error)
 							},
-							result: async () => success(`👻 ${post.slug}.md removed`),
 							confirmation: () => {
 								const response = confirm('Are you sure?')
 								return response

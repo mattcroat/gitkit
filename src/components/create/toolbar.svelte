@@ -21,12 +21,14 @@
 	<form
 		method="post"
 		use:enhance={{
+			pending: async () => {
+				success(`💾 Saved ${title}.md`)
+			},
 			error: async ({ response }) => {
 				const { error } = await response.json()
 				failure(error)
 			},
 			result: async () => {
-				success(`💾 Saved ${title}.md`)
 				await new Promise((resolve) => setTimeout(resolve, 2000))
 				goto('/')
 			}
