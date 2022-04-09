@@ -24,7 +24,7 @@ image: 'social-image.webp'
 You're going to make **Twittr** — a social media site for sharing hot takes.
 
 <video autoPlay={true} loop muted controls>
-  <source src="/images/sveltekit-for-beginners/twittr.mp4" type="video/mp4" />
+  <source src="https://raw.githubusercontent.com/mattcroat/gitkit/main/posts/sveltekit-for-beginners/images/twittr.mp4" type="video/mp4" />
 </video>
 
 Here are the [finished project files](https://github.com/JoysOfCode/sveltekit-for-beginners).
@@ -37,10 +37,7 @@ Let's dive into it! 🐬
 
 [SvelteKit](https://kit.svelte.dev/) is an opinionated full stack framework that ties the frontend and backend together delivering the best developer and user experience.
 
-<img
-  src="/images/sveltekit-for-beginners/sveltekit.webp"
-  alt="Diagram showing how the frontend Svelte and backend Kit combined make the full stack framework SvelteKit"
-/>
+![Diagram showing how the frontend Svelte and backend Kit combined make the full stack framework SvelteKit](https://raw.githubusercontent.com/mattcroat/gitkit/main/posts/sveltekit-for-beginners/images/sveltekit.webp)
 
 SvelteKit is made by [@rich_harris](https://twitter.com/rich_harris) and a group of amazing [contributors](https://github.com/sveltejs/kit/graphs/contributors).
 
@@ -86,10 +83,7 @@ What happens when the page loads? The default Pokémon it fetches is Pikachu so 
 
 If you inspect the elements on the page inside the elements tab the fetched Pokémon is right there.
 
-<img
-  src="/images/sveltekit-for-beginners/elements-tab.webp"
-  alt="Showing the elements tab inside developer tools"
-/>
+![Showing the elements tab inside developer tools](https://raw.githubusercontent.com/mattcroat/gitkit/main/posts/sveltekit-for-beginners/images/elements-tab.webp)
 
 If you look at the response when you load the page inside the network tab (refresh the page) or view page source it's just a HTML shell that you query using JavaScript and attach the Svelte app onto.
 
@@ -98,17 +92,11 @@ If you look at the response when you load the page inside the network tab (refre
   JavaScript it's like nothing is there.
 </blockquote>
 
-<img
-  src="/images/sveltekit-for-beginners/network-tab.webp"
-  alt="Showing the network tab for initial page load inside developer tools"
-/>
+![Showing the network tab for initial page load inside developer tools](https://raw.githubusercontent.com/mattcroat/gitkit/main/posts/sveltekit-for-beginners/images/network-tab.webp)
 
 Try searching for "charizard" (press <kbd>Enter</kbd> to submit the form) and you can see a fetch API request has been made and Svelte updates the user interface but we're still using the same `index.html` file.
 
-<img
-  src="/images/sveltekit-for-beginners/network-request.webp"
-  alt="Showing the network request response inside the network tab when fetching a Pokémon"
-/>
+![Showing the network request response inside the network tab when fetching a Pokémon](https://raw.githubusercontent.com/mattcroat/gitkit/main/posts/sveltekit-for-beginners/images/network-request.webp)
 
 This might be alright for a dashboard where we don't care about indexing pages for search engine optimization but most sites do and using any secrets like user authentication is where things start to become hard.
 
@@ -189,19 +177,13 @@ Open the page inside a new window and navigate to the network tab inside your de
 
 Try refreshing the page and enter a Pokémon.
 
-<img
-  src="/images/sveltekit-for-beginners/javascript-disabled.webp"
-  alt="Network tab showing how the page works with JavaScript disabled"
-/>
+![Network tab showing how the page works with JavaScript disabled](https://raw.githubusercontent.com/mattcroat/gitkit/main/posts/sveltekit-for-beginners/images/javascript-disabled.webp)
 
 You can see the page refresh if you look at the favicon at the top left. There's no JavaScript! 🤯
 
 If you look at the response or view the page source the HTML generated from the server is right there! You can see how the page is being hydrated.
 
-<img
-  src="/images/sveltekit-for-beginners/ssr-hydrate.webp"
-  alt="Shows page source using server-side rendering and hydration"
-/>
+![Shows page source using server-side rendering and hydration](https://raw.githubusercontent.com/mattcroat/gitkit/main/posts/sveltekit-for-beginners/images/ssr-hydrate.webp)
 
 Over the years we forgot how basic things like forms work and started to rely on JavaScript for everything but now we can have the best of both of worlds using progressive enhancement.
 
@@ -944,10 +926,7 @@ Let's see how this looks in practice!
 <slot />
 ```
 
-<img
-  src="/images/sveltekit-for-beginners/landing-page.webp"
-  alt="Landing page"
-/>
+![Landing page](https://raw.githubusercontent.com/mattcroat/gitkit/main/posts/sveltekit-for-beginners/images/landing-page.webp)
 
 It's that simple to have nested layouts! 🤯
 
@@ -1006,10 +985,7 @@ SvelteKit provides a default error page but it's hard to read so we can do bette
 </style>
 ```
 
-<img
-  src="/images/sveltekit-for-beginners/custom-error.webp"
-  alt="Custom error page"
-/>
+![Custom error page](https://raw.githubusercontent.com/mattcroat/gitkit/main/posts/sveltekit-for-beginners/images/custom-error.webp)
 
 <blockquote>
   🐿️ If you remember from earlier `__error.svelte` and `__layout.svelte`
@@ -1411,10 +1387,7 @@ Now we can create another nested layout and it's going to inherit the global sty
 
 The home page is done! 🥳
 
-<img
-  src="/images/sveltekit-for-beginners/home-page.webp"
-  alt="Home page"
-/>
+[Home page](https://raw.githubusercontent.com/mattcroat/gitkit/main/posts/sveltekit-for-beginners/images/home-page.webp))
 
 I want to show you the real power of nested layouts — if a part of your site explodes it won't bring the entire thing down but just the part that failed with a useful error message. 🤯
 
@@ -1459,10 +1432,7 @@ I want to show you the real power of nested layouts — if a part of your site e
 </style>
 ```
 
-<img
-  src="/images/sveltekit-for-beginners/nested-error.webp"
-  alt="Error page"
-/>
+![Error page](https://raw.githubusercontent.com/mattcroat/gitkit/main/posts/sveltekit-for-beginners/images/nested-error.webp)
 
 ## Showing Tweets
 
@@ -1961,10 +1931,7 @@ We're going to pass each tweet as a prop to a `<Tweet>` component mostly because
 
 </details>
 
-<img
-  src="/images/sveltekit-for-beginners/tweets.webp"
-  alt="Tweets"
-/>
+![Tweets](https://raw.githubusercontent.com/mattcroat/gitkit/main/posts/sveltekit-for-beginners/images/tweets.webp)
 
 Because we designed the API and shaped the data we have complete control of how we want to use it.
 
@@ -2132,10 +2099,7 @@ This is what I love about SvelteKit because it's using the web platform since `r
 
 Share your hot take! 🔥
 
-<img
-  src="/images/sveltekit-for-beginners/hot-take.webp"
-  alt="Hot take"
-/>
+![Hot take](https://raw.githubusercontent.com/mattcroat/gitkit/main/posts/sveltekit-for-beginners/images/hot-take.webp)
 
 ## Removing Tweets
 
@@ -2471,10 +2435,7 @@ export const get: RequestHandler = async ({ params }) => {
 
 Notice you get redirected to `home` if you like or remove a tweet but it's fine. You can always change that later in a couple of ways like passing where you want to redirect or using another endpoint.
 
-<img
-  src="/images/sveltekit-for-beginners/user-profile.webp"
-  alt="User profile"
-/>
+![User profile](https://raw.githubusercontent.com/mattcroat/gitkit/main/posts/sveltekit-for-beginners/images/user-profile.webp)
 
 ## Linking to a Tweet
 
@@ -2759,10 +2720,7 @@ The content is going to show on the right when we use the navigation inside the 
 
 Unfortunately I didn't have enough time to make it responsive. 😅
 
-<img
-  src="/images/sveltekit-for-beginners/settings.webp"
-  alt="Settings page"
-/>
+![Settings page](https://raw.githubusercontent.com/mattcroat/gitkit/main/posts/sveltekit-for-beginners/images/settings.webp)
 
 ## About Page
 
