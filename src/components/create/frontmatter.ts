@@ -14,12 +14,14 @@ const date = getDate()
 
 const frontmatter = `
 	---
-	title: Untitled
-	description: Description
+	title: 'Untitled'
+	description: 'Description'
 	slug: 'slug'
 	published: '${date}'
 	category: 'category'
 	image: 'social-image.webp'
+	type: 'series'
+	draft: 'true'
 	---
 `
 	.trim()

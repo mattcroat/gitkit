@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Draft from '$root/components/create/index.svelte'
+	import Editor from '$root/components/create/index.svelte'
 </script>
 
 <svelte:head>
 	<title>Create post</title>
 </svelte:head>
 
-<Draft />
+<Editor />

@@ -8,7 +8,7 @@ export const post: RequestHandler = async ({ request }) => {
 	const markdown = String(form.get('markdown'))
 
 	try {
-		await createPost(slug, markdown, { draft: true })
+		await createPost(slug, markdown)
 	} catch (error) {
 		return {
 			status: 400,

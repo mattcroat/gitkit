@@ -26,7 +26,7 @@
 				failure(error)
 			},
 			result: async () => {
-				success(`💾 Saved "${title}"" as draft.`)
+				success(`💾 Saved ${title}.md`)
 				await new Promise((resolve) => setTimeout(resolve, 2000))
 				goto('/')
 			}
@@ -36,7 +36,7 @@
 		<input type="hidden" name="markdown" value={$post.markdown} />
 		<button class="save" type="submit">
 			<SaveIcon width="24" height="24" />
-			<span>Draft</span>
+			<span>Save</span>
 		</button>
 	</form>
 </div>

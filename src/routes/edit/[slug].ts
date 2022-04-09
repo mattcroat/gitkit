@@ -1,10 +1,9 @@
 import type { RequestHandler } from '@sveltejs/kit'
 
-import { createPost, editPost, getPost } from '$root/lib/posts'
+import { editPost, getPost } from '$root/lib/posts'
 
-export const get: RequestHandler = async ({ params, url }) => {
-	const draft = url.searchParams.has('draft')
-	const { frontmatter, postMarkdown } = await getPost(params.slug, { draft })
+export const get: RequestHandler = async ({ params }) => {
+	const { frontmatter, postMarkdown } = await getPost(params.slug)
 
 	return {
 		body: {
@@ -15,31 +14,12 @@ export const get: RequestHandler = async ({ params, url }) => {
 	}
 }
 
-export const post: RequestHandler = async ({ params, request, url }) => {
+export const post: RequestHandler = async ({ params, request }) => {
 	const form = await request.formData()
 	const markdown = String(form.get('markdown'))
-	const save = form.has('save')
-	const publish = form.has('publish')
-	const draft = url.searchParams.has('draft')
-
-	const action = {
-		save: save && !draft,
-		saveDraft: save && draft,
-		publishDraft: draft && publish
-	}
 
 	try {
-		if (action.save) {
-			await editPost(params.slug, markdown)
-		}
-
-		if (action.saveDraft) {
-			await editPost(params.slug, markdown, { draft: true })
-		}
-
-		if (action.publishDraft) {
-			await createPost(params.slug, markdown)
-		}
+		await editPost(params.slug, markdown)
 	} catch (error) {
 		return {
 			status: 400,

@@ -1,5 +1,5 @@
 import { markdownToHTML, frontMatter } from './markdown'
-import { draftBranch, mainBranch, postsUrl } from './config'
+import { mainBranch, postsUrl } from './config'
 import type {
 	FrontMatterType,
 	GitHubAPIResponseType,
@@ -43,28 +43,18 @@ export async function getRateLimit(): Promise<RateAPIResponseType> {
 	}
 }
 
-async function getPostSHA(
-	slug: string,
-	{ draft }: { draft?: boolean } = {}
-): Promise<string> {
-	const params = draft ? '?ref=draft' : ''
-	const response = await fetch(`${postsUrl}/${slug}.md${params}`, { headers })
+async function getPostSHA(slug: string): Promise<string> {
+	const response = await fetch(`${postsUrl}/${slug}/${slug}.md`, { headers })
 
 	if (response.status !== 200) {
-		throw new Error(`Could not find "${slug}". 🤷`)
+		throw new Error(`🤷 Could not find "${slug}"`)
 	}
 
 	return (await response.json()).sha
 }
 
-async function getFrontMatter(
-	slug: string,
-	{ draft }: { draft?: boolean } = {}
-): Promise<FrontMatterType> {
-	const params = draft ? '?ref=draft' : ''
-	const postUrl = `${postsUrl}/${slug}/${slug}.md${params}`
-
-	console.log(slug)
+async function getFrontMatter(slug: string): Promise<FrontMatterType> {
+	const postUrl = `${postsUrl}/${slug}/${slug}.md`
 
 	const response = await fetch(postUrl, {
 		headers: {
@@ -135,39 +125,8 @@ export async function getPostsByCategory(
 	return posts
 }
 
-export async function getDrafts(): Promise<PostItemType[]> {
-	const response = await fetch(`${postsUrl}?ref=draft`, { headers })
-
-	if (!response.ok) {
-		throw new Error('💩 Could not fetch posts!')
-	}
-
-	const postsData: GitHubAPIResponseType[] = await response.json()
-	const slugs = postsData.map((post) => post.name)
-
-	let posts = []
-	for (const postSlug of slugs) {
-		const { slug, title } = await getFrontMatter(postSlug, { draft: true })
-		posts = [...posts, { slug, title }]
-	}
-
-	return posts
-}
-
-export async function getAllPosts(): Promise<{
-	published: PostItemType[]
-	drafts: PostItemType[]
-}> {
-	const [published, drafts] = await Promise.all([getPosts(), getDrafts()])
-	return { published, drafts }
-}
-
-export async function getPost(
-	slug: string,
-	{ draft }: { draft?: boolean } = {}
-): Promise<PostType> {
-	const params = draft ? '?ref=draft' : ''
-	const postUrl = `${postsUrl}/${slug}.md${params}`
+export async function getPost(slug: string): Promise<PostType> {
+	const postUrl = `${postsUrl}/${slug}/${slug}.md`
 
 	const response = await fetch(postUrl, {
 		headers: {
@@ -187,83 +146,77 @@ export async function getPost(
 	return { content, frontmatter, postMarkdown }
 }
 
-export async function createPost(
-	slug: string,
-	content: string,
-	{ draft }: { draft?: boolean } = {}
-): Promise<void> {
+export async function createPost(slug: string, content: string): Promise<void> {
 	if (!slug) {
 		throw new Error(`🐌 You have to specify a slug`)
 	}
 
 	// check if post already exists
-	const params = draft ? '?ref=draft' : ''
-	const post = await fetch(`${postsUrl}/${slug}.md${params}`, { headers })
+	const post = await fetch(`${postsUrl}/${slug}/${slug}.md`, { headers })
 	if (post.status === 200) {
 		throw new Error(`👻 The post already exists`)
 	}
 
-	const createPost = await fetch(`${postsUrl}/${slug}.md`, {
+	const createPost = await fetch(`${postsUrl}/${slug}/${slug}.md`, {
 		method: 'PUT',
 		headers,
 		body: JSON.stringify({
-			message: 'api: Add post 🔥',
+			message: `api: Add ${slug}.md 🔥`,
 			// Base64 encoding is required
 			content: Buffer.from(content).toString('base64'),
-			branch: draft ? draftBranch : mainBranch
+			branch: mainBranch
 		})
 	})
 
 	if (createPost.status !== 201) {
-		throw new Error(`💩 Something went wrong creating ${postsUrl}/${slug}.md`)
+		throw new Error(
+			`💩 Something went wrong creating ${postsUrl}/${slug}/${slug}.md`
+		)
 	}
 }
 
-export async function removePost(
-	slug: string,
-	{ draft }: { draft?: boolean } = {}
-): Promise<void> {
+export async function removePost(slug: string): Promise<void> {
 	if (!slug) {
 		throw new Error('🐌 Invalid slug')
 	}
 
-	const removePost = await fetch(`${postsUrl}/${slug}.md`, {
+	const removePost = await fetch(`${postsUrl}/${slug}/${slug}.md`, {
 		method: 'DELETE',
 		headers,
 		body: JSON.stringify({
-			message: 'api: Remove post 💩',
-			sha: await getPostSHA(slug, { draft: true }),
-			branch: draft ? draftBranch : mainBranch
+			message: `api: Remove ${slug}.md 💩`,
+			sha: await getPostSHA(slug),
+			branch: mainBranch
 		})
 	})
 
 	if (removePost.status !== 200) {
-		throw new Error(`💩 Something went wrong removing "${postsUrl}/${slug}.md"`)
+		throw new Error(
+			`💩 Something went wrong removing "${postsUrl}/${slug}/${slug}.md"`
+		)
 	}
 }
 
-export async function editPost(
-	slug: string,
-	content: string,
-	{ draft }: { draft?: boolean } = {}
-): Promise<void> {
+export async function editPost(slug: string, content: string): Promise<void> {
 	if (!slug || !content) {
 		throw new Error(`🤷 You have to specify the slug and content`)
 	}
 
-	const updatePost = await fetch(`${postsUrl}/${slug}.md`, {
+	const updatePost = await fetch(`${postsUrl}/${slug}/${slug}.md`, {
 		method: 'PUT',
 		headers,
 		body: JSON.stringify({
-			message: 'api: Update post ✍️',
+			message: `api: Update ${slug}.md ✍️`,
 			// Base64 encoding is required
 			content: Buffer.from(content).toString('base64'),
-			sha: await getPostSHA(slug, { draft }),
-			branch: draft ? draftBranch : mainBranch
+			sha: await getPostSHA(slug),
+			branch: mainBranch
 		})
 	})
 
 	if (updatePost.status !== 200) {
-		throw new Error(`💩 Something went wrong updating ${postsUrl}/${slug}.md`)
+		throw new Error(
+			`💩 Something went wrong updating ${postsUrl}/${slug}/${slug}.md`
+		)
 	}
 }

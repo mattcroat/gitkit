@@ -1,24 +1,19 @@
 <script lang="ts">
 	import { getContext } from 'svelte'
-	import { page } from '$app/stores'
-	import { goto } from '$app/navigation'
 
 	import {
 		ArrowLeftIcon,
 		EyeIcon,
-		SaveIcon,
-		SpeakerphoneIcon
+		SaveIcon
 	} from '@rgossiaux/svelte-heroicons/outline'
 
 	import { enhance } from '$root/lib/form'
-	import { draftFileUrl, fileUrl } from '$root/lib/config'
+	import { fileUrl } from '$root/lib/config'
 	import { failure, success } from '$root/lib/toast'
 	import type { EditorPostType } from '$root/types'
 
 	const post: EditorPostType = getContext('post')
-	const draft = $page.url.searchParams.has('draft')
-	const url = draft ? draftFileUrl : fileUrl
-	const viewUrl = `${url}/${$post.slug}.md`
+	const viewUrl = `${fileUrl}/${$post.slug}/${$post.slug}.md`
 </script>
 
 <div class="toolbar">
@@ -36,7 +31,7 @@
 				failure(error)
 			},
 			result: async () => {
-				success(`💾 Post saved.`)
+				success(`💾 ${$post.slug}.md saved`)
 			}
 		}}
 	>
@@ -47,30 +42,6 @@
 			<span>Save</span>
 		</button>
 	</form>
-
-	{#if draft}
-		<form
-			method="post"
-			use:enhance={{
-				error: async ({ response }) => {
-					const { error } = await response.json()
-					failure(error)
-				},
-				result: async () => {
-					success(`📢 Post published.`)
-					await new Promise((resolve) => setTimeout(resolve, 2000))
-					goto('/editor')
-				}
-			}}
-		>
-			<input type="hidden" name="publish" />
-			<input type="hidden" name="markdown" value={$post.markdown} />
-			<button class="save" type="submit">
-				<SpeakerphoneIcon width="24" height="24" />
-				<span>Publish</span>
-			</button>
-		</form>
-	{/if}
 
 	<a class="view" href={viewUrl}>
 		<EyeIcon width="24" height="24" />
