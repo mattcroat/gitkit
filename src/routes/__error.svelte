@@ -14,4 +14,20 @@
 	export let title: string
 </script>
 
-<h1>{title}</h1>
+<div class="error">
+	<h1>{title}</h1>
+</div>
+
+<style>
+	.error {
+		height: 100%;
+		display: grid;
+		place-content: center;
+	}
+
+	.error h1 {
+		max-width: 800px;
+		text-align: center;
+		word-wrap: break-word;
+	}
+</style>
