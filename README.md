@@ -15,8 +15,9 @@ Features include:
 
 Development:
 
-````bash
+```bash
 npm run dev
+```
 
 ## Building
 
@@ -24,6 +25,6 @@ Production:
 
 ```bash
 npm run build
-````
+```
 
 You can preview the production build with `npm run preview`.
