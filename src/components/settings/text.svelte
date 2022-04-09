@@ -2,8 +2,10 @@
 	import { browser } from '$app/env'
 
 	const rootElement = browser ? document.documentElement : null
-	let font = browser ? localStorage.size.replace('px', '') : 18
-	let text = browser ? localStorage.text.replace('ch', '') : 60
+	const fontSize = browser && localStorage.size
+	const textLength = browser && localStorage.text
+	let font = fontSize ? fontSize.replace('px', '') : 18
+	let text = textLength ? textLength.replace('ch', '') : 60
 
 	function handleFontSizeChange() {
 		localStorage.size = `${font}px`
