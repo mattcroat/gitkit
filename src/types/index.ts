@@ -17,6 +17,17 @@ export type GitHubAPIResponseType = {
 	}
 }
 
+export type GitHubAPIPostType = {
+	title: string
+	description: string
+	slug: string
+	published: string
+	category: string
+	image: string
+	series: string
+	draft: string
+}
+
 export type GetSHAType = {
 	slug?: string
 	type?: 'post' | 'posts'

@@ -3,6 +3,7 @@ import { mainBranch, postsDataUrl, postsUrl } from './config'
 import type {
 	FrontMatterType,
 	GetSHAType,
+	GitHubAPIPostType,
 	GitHubAPIResponseType,
 	PostItemType,
 	PostType,
@@ -64,7 +65,7 @@ async function getSHA({ slug, type }: GetSHAType): Promise<string> {
 }
 
 /**
- * Gets the YAML front matter block from the post that holds the post metadata
+ * Gets the YAML front matter block from the post
  */
 async function getFrontMatter(slug: string): Promise<FrontMatterType> {
 	const postUrl = `${postsUrl}/${slug}/${slug}.md`
@@ -88,7 +89,10 @@ async function getFrontMatter(slug: string): Promise<FrontMatterType> {
 }
 
 /**
- * This is responsible for updating `posts.json`
+ * This is responsible for updating `data/posts.json`
+ * posts metadata because it's more efficient computing
+ * things like sorting posts by category or series than
+ * making a HTTP request for every post when you do
  */
 export async function updatePosts(): Promise<void> {
 	const response = await fetch(postsUrl, { headers })
@@ -118,6 +122,9 @@ export async function updatePosts(): Promise<void> {
 		})
 	})
 
+	// etag
+	// console.log(response.headers.get('etag'))
+
 	if (updatePosts.status !== 200) {
 		throw new Error(`💩 Something went wrong updating posts`)
 	}
@@ -127,23 +134,24 @@ export async function updatePosts(): Promise<void> {
  * Gets posts from GitHub
  */
 export async function getPosts(): Promise<PostItemType[]> {
-	const response = await fetch(postsUrl, { headers })
+	const response = await fetch(postsDataUrl, {
+		headers: {
+			...headers,
+			// https://docs.github.com/en/rest/overview/media-types
+			Accept: 'application/vnd.github.v3.raw'
+		}
+	})
 
 	if (!response.ok) {
 		throw new Error('💩 Could not fetch posts!')
 	}
 
-	const postsData: GitHubAPIResponseType[] = await response.json()
-	const slugs = postsData.map((post) => post.name)
-
-	let posts = []
-	for (const postSlug of slugs) {
-		const { slug, title } = await getFrontMatter(postSlug)
-		posts = [...posts, { slug, title }]
-	}
-
-	// etag
-	// console.log(response.headers.get('etag'))
+	const data: GitHubAPIPostType[] = await response.json()
+	const posts = data.map((post) => ({
+		title: post.title,
+		description: post.description,
+		slug: post.slug
+	}))
 
 	return posts
 }
@@ -154,28 +162,20 @@ export async function getPosts(): Promise<PostItemType[]> {
 export async function getPostsByCategory(
 	category: string
 ): Promise<PostItemType[]> {
-	const response = await fetch(postsUrl, { headers })
+	const response = await fetch(postsDataUrl, {
+		headers: {
+			...headers,
+			// https://docs.github.com/en/rest/overview/media-types
+			Accept: 'application/vnd.github.v3.raw'
+		}
+	})
 
 	if (!response.ok) {
 		throw new Error('💩 Could not fetch posts!')
 	}
 
-	const postsData: GitHubAPIResponseType[] = await response.json()
-	const slugs = postsData.map((post) => post.name.replace('.md', ''))
-
-	let posts = []
-	for (const postSlug of slugs) {
-		const frontMatter = await getFrontMatter(postSlug)
-		if (frontMatter.category === category) {
-			posts = [
-				...posts,
-				{
-					slug: frontMatter.slug,
-					title: frontMatter.title
-				}
-			]
-		}
-	}
+	const data: GitHubAPIPostType[] = await response.json()
+	const posts = data.filter((post) => post.category === category)
 
 	return posts
 }
