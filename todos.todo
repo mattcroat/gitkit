@@ -79,6 +79,6 @@ Site:
     ☐ Newsletter
 
 Issues:
-  ☐ Markdown strips HTML
+  ✔ Markdown strips HTML @done
   ☐ Front matter doesn't like when you don't use strings
   ☐ WebSockets could use a more elegant implementation
