@@ -17,7 +17,7 @@
 </script>
 
 <div class="toolbar">
-	<a class="back" href="/" sveltekit:prefetch>
+	<a class="back" href="/">
 		<ArrowLeftIcon width="24" height="24" />
 	</a>
 
