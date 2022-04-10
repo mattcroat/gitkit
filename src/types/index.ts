@@ -17,6 +17,11 @@ export type GitHubAPIResponseType = {
 	}
 }
 
+export type GetSHAType = {
+	slug?: string
+	type?: 'post' | 'posts'
+}
+
 export type RateAPIResponseType = {
 	limit: number
 	used: number

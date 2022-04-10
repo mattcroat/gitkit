@@ -1,7 +1,8 @@
 import { markdownToHTML, frontMatter } from './markdown'
-import { mainBranch, postsUrl } from './config'
+import { mainBranch, postsDataUrl, postsUrl } from './config'
 import type {
 	FrontMatterType,
+	GetSHAType,
 	GitHubAPIResponseType,
 	PostItemType,
 	PostType,
@@ -43,11 +44,14 @@ export async function getRateLimit(): Promise<RateAPIResponseType> {
 	}
 }
 
-async function getPostSHA(slug: string): Promise<string> {
-	const response = await fetch(`${postsUrl}/${slug}/${slug}.md`, { headers })
+async function getSHA({ slug, type }: GetSHAType): Promise<string> {
+	const postUrl = `${postsUrl}/${slug}/${slug}.md`
+	const url = type === 'post' ? postUrl : postsDataUrl
+
+	const response = await fetch(url, { headers })
 
 	if (response.status !== 200) {
-		throw new Error(`🤷 Could not find "${slug}"`)
+		throw new Error(`🤷 Could not find SHA for ${url}`)
 	}
 
 	return (await response.json()).sha
@@ -72,6 +76,39 @@ async function getFrontMatter(slug: string): Promise<FrontMatterType> {
 	const postFrontmatter = await frontMatter(postMarkdown)
 
 	return postFrontmatter
+}
+
+export async function updatePosts(): Promise<void> {
+	const response = await fetch(postsUrl, { headers })
+
+	if (!response.ok) {
+		throw new Error('💩 Could not fetch posts!')
+	}
+
+	const postsData: GitHubAPIResponseType[] = await response.json()
+	const slugs = postsData.map((post) => post.name)
+
+	let posts = []
+	for (const slug of slugs) {
+		posts = [...posts, await getFrontMatter(slug)]
+	}
+	const serializedPosts = JSON.stringify(posts, null, 2)
+
+	const updatePosts = await fetch(postsDataUrl, {
+		method: 'PUT',
+		headers,
+		body: JSON.stringify({
+			message: `api: ✍️ Update posts`,
+			// Base64 encoding is required
+			content: Buffer.from(serializedPosts).toString('base64'),
+			sha: await getSHA({ type: 'posts' }),
+			branch: mainBranch
+		})
+	})
+
+	if (updatePosts.status !== 200) {
+		throw new Error(`💩 Something went wrong updating posts`)
+	}
 }
 
 export async function getPosts(): Promise<PostItemType[]> {
@@ -161,7 +198,7 @@ export async function createPost(slug: string, content: string): Promise<void> {
 		method: 'PUT',
 		headers,
 		body: JSON.stringify({
-			message: `api: Add ${slug}.md 🔥`,
+			message: `api: 🔥 Add ${slug}.md`,
 			// Base64 encoding is required
 			content: Buffer.from(content).toString('base64'),
 			branch: mainBranch
@@ -184,8 +221,8 @@ export async function removePost(slug: string): Promise<void> {
 		method: 'DELETE',
 		headers,
 		body: JSON.stringify({
-			message: `api: Remove ${slug}.md 💩`,
-			sha: await getPostSHA(slug),
+			message: `api: 💩 Remove ${slug}.md`,
+			sha: await getSHA({ slug, type: 'post' }),
 			branch: mainBranch
 		})
 	})
@@ -206,10 +243,10 @@ export async function editPost(slug: string, content: string): Promise<void> {
 		method: 'PUT',
 		headers,
 		body: JSON.stringify({
-			message: `api: Update ${slug}.md ✍️`,
+			message: `api: ✍️ Update ${slug}.md`,
 			// Base64 encoding is required
 			content: Buffer.from(content).toString('base64'),
-			sha: await getPostSHA(slug),
+			sha: await getSHA({ slug, type: 'post' }),
 			branch: mainBranch
 		})
 	})
