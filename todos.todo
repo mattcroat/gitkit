@@ -17,7 +17,7 @@ Posts:
     ✔ New posts should have a short cache that's longer after some time @done
     ☐ Use **etag** from the response instead to know when a post is changed to rebuild the page
   Ideas:
-    ☐ Store post metadata in a JSON file to avoid API rate limit
+    ✔ Store post metadata in a JSON file to avoid API rate limit @done
     ☐ Pagination
 
 Editor:
