@@ -15,6 +15,9 @@ const headers = {
 	Authorization: `token ${process.env.GH_TOKEN}`
 }
 
+/**
+ * For measuring the GitHub API rate limit in development
+ */
 export async function getRateLimit(): Promise<RateAPIResponseType> {
 	const response = await fetch('https://api.github.com/rate_limit', { headers })
 	const { resources } = await response.json()
@@ -44,6 +47,9 @@ export async function getRateLimit(): Promise<RateAPIResponseType> {
 	}
 }
 
+/**
+ * GitHub API requires the unique SHA of the file being updated
+ */
 async function getSHA({ slug, type }: GetSHAType): Promise<string> {
 	const postUrl = `${postsUrl}/${slug}/${slug}.md`
 	const url = type === 'post' ? postUrl : postsDataUrl
@@ -57,6 +63,9 @@ async function getSHA({ slug, type }: GetSHAType): Promise<string> {
 	return (await response.json()).sha
 }
 
+/**
+ * Gets the YAML front matter block from the post that holds the post metadata
+ */
 async function getFrontMatter(slug: string): Promise<FrontMatterType> {
 	const postUrl = `${postsUrl}/${slug}/${slug}.md`
 
@@ -78,6 +87,9 @@ async function getFrontMatter(slug: string): Promise<FrontMatterType> {
 	return postFrontmatter
 }
 
+/**
+ * This is responsible for updating `posts.json`
+ */
 export async function updatePosts(): Promise<void> {
 	const response = await fetch(postsUrl, { headers })
 
@@ -111,6 +123,9 @@ export async function updatePosts(): Promise<void> {
 	}
 }
 
+/**
+ * Gets posts from GitHub
+ */
 export async function getPosts(): Promise<PostItemType[]> {
 	const response = await fetch(postsUrl, { headers })
 
@@ -133,6 +148,9 @@ export async function getPosts(): Promise<PostItemType[]> {
 	return posts
 }
 
+/**
+ * Gets posts by category from GitHub
+ */
 export async function getPostsByCategory(
 	category: string
 ): Promise<PostItemType[]> {
@@ -162,6 +180,9 @@ export async function getPostsByCategory(
 	return posts
 }
 
+/**
+ * Gets post by slug from GitHub
+ */
 export async function getPost(slug: string): Promise<PostType> {
 	const postUrl = `${postsUrl}/${slug}/${slug}.md`
 
@@ -212,6 +233,9 @@ export async function createPost(slug: string, content: string): Promise<void> {
 	}
 }
 
+/**
+ * Remove post by using the slug from GitHub
+ */
 export async function removePost(slug: string): Promise<void> {
 	if (!slug) {
 		throw new Error('🐌 Invalid slug')
@@ -234,6 +258,9 @@ export async function removePost(slug: string): Promise<void> {
 	}
 }
 
+/**
+ * Edit a post on GitHub
+ */
 export async function editPost(slug: string, content: string): Promise<void> {
 	if (!slug || !content) {
 		throw new Error(`🤷 You have to specify the slug and content`)
