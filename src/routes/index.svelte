@@ -17,7 +17,7 @@
 
 <main>
 	<section>
-		<h2>Create Post</h2>
+		<h2>Create post</h2>
 		<div class="create-post">
 			<a href="/create">Create post</a>
 			<PlusCircleIcon width="24" height="24" />
@@ -29,7 +29,7 @@
 		<div class="posts">
 			{#each posts as post}
 				<article class="post">
-					<a href="/edit/{post.slug}" sveltekit:prefetch>{post.title}</a>
+					<a href="/edit/{post.slug}">{post.title}</a>
 					<form
 						action="?_method=delete"
 						method="post"
@@ -59,8 +59,8 @@
 <style>
 	main {
 		display: grid;
-		gap: var(--spacing-20);
-		padding: var(--spacing-20);
+		gap: var(--spacing-64);
+		padding: var(--spacing-24) var(--spacing-32);
 	}
 
 	section {
@@ -75,29 +75,19 @@
 		align-items: center;
 		gap: var(--spacing-16);
 		padding: var(--spacing-20);
-		background-color: hsl(220 20% 20%);
+		background-color: hsl(220 20% 16%);
 		border-radius: var(--radius-1);
-		box-shadow: 0px 0px 4px hsl(0 0% 0% / 40%);
-	}
-
-	.posts {
-		display: grid;
-		gap: var(--spacing-16);
-		grid-template-columns: repeat(3, 1fr);
+		box-shadow: 0px 2px 4px hsl(0 0% 0% / 4%);
 	}
 
 	.post {
 		display: flex;
 		justify-content: space-between;
-		align-items: center;
-		padding: var(--spacing-20);
-		background-color: hsl(220 20% 20%);
-		border-radius: var(--radius-1);
-		box-shadow: 0px 0px 4px hsl(220 20% 4% / 40%);
-		transition: box-shadow 0.3s;
+		padding: 2rem;
+		border-bottom: 1px solid hsl(220 20% 24%);
 	}
 
-	.post:hover {
-		box-shadow: 0px 0px 10px hsl(220 20% 4% / 80%);
+	.post:nth-child(odd) {
+		background: hsl(220 20% 16%);
 	}
 </style>
