@@ -1,7 +1,7 @@
 import { unified } from 'unified'
 import fromMarkdown from 'remark-parse'
-import toMarkdown from 'remark-stringify'
 import fromMarkdownToHtml from 'remark-rehype'
+import parseHtmlAndMarkdown from 'rehype-raw'
 import toHtml from 'rehype-stringify'
 import matter from 'gray-matter'
 
@@ -44,8 +44,11 @@ export async function markdownToHTML(markdown: string): Promise<ContentType> {
 			// Remove paragraph around images
 			remarkUnwrapImages
 		])
-		.use(toMarkdown)
-		.use(fromMarkdownToHtml)
+		// To be able to parse a mix of Markdown and HTML
+		// `remark-rehype` is required with `rehype-raw`
+		// https://github.com/rehypejs/rehype-raw
+		.use(fromMarkdownToHtml, { allowDangerousHtml: true })
+		.use(parseHtmlAndMarkdown)
 		.use(rehypeCodeTitles)
 		.use(rehypePrism)
 		.use(toHtml)

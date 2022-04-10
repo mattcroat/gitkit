@@ -6,10 +6,11 @@ import { Server } from 'socket.io'
 // markdown parsing
 import { unified } from 'unified'
 import fromMarkdown from 'remark-parse'
-import toMarkdown from 'remark-stringify'
-import fromMarkdownToHtml from 'remark-rehype'
+import parseHtmlAndMarkdown from 'remark-rehype'
 import toHtml from 'rehype-stringify'
 import matter from 'gray-matter'
+
+import rehypeRaw from 'rehype-raw'
 
 // markdown plugins
 import remarkGfm from 'remark-gfm'
@@ -35,8 +36,8 @@ async function markdownToHTML(markdown) {
 				[remarkTableofContents, { tight: true }],
 				remarkUnwrapImages
 			])
-			.use(toMarkdown)
-			.use(fromMarkdownToHtml)
+			.use(parseHtmlAndMarkdown, { allowDangerousHtml: true })
+			.use(rehypeRaw)
 			.use(rehypeCodeTitles)
 			.use(rehypePrism)
 			.use(toHtml)
