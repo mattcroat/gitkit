@@ -77,3 +77,8 @@ Site:
     ☐ Editor
     ☐ Theming
     ☐ Newsletter
+
+Issues:
+  ☐ Markdown strips HTML
+  ☐ Front matter doesn't like when you don't use strings
+  ☐ WebSockets could use a more elegant implementation
