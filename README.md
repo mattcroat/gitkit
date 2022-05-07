@@ -1,5 +1,7 @@
 # GitKit
 
+The editor that powers the [Joy of Code](https://github.com/mattcroat/joy-of-code) editor.
+
 GitKit turns GitHub into a content management system using the GitHub API and SvelteKit to create, read, update and delete Markdown files and host images.
 
 **Features include**:
